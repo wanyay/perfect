@@ -35,10 +35,10 @@ class PurchaseController extends Controller
     }
    public function store(Request $request)
    {
-   		 DB::beginTransaction();
-      try
-      {
-        $purchase = Purchase::create(['code'=>$request->code,'payment_type'=>$request->payment_type,'supplier_id'=>$request->supplier_id,'cash'=>$request->cash,'total'=>$request->total]);
+       try
+       {
+          DB::beginTransaction();
+          $purchase = Purchase::create(['code'=>$request->code,'payment_type'=>$request->payment_type,'supplier_id'=>$request->supplier_id,'cash'=>$request->cash,'total'=>$request->total]);
         if($request->payment_type == 'credit')
         {
             SupplierCredit::create(['supplier_id' => $request->supplier_id,'amount'=> $request->total - $request->cash,'is_payback' => 0,'remark'=>'Credit in '.$request->code]);

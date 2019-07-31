@@ -57,7 +57,7 @@ class DailyApiController extends Controller
     {
     $total = Sale::whereDate('created_at',$date)->sum('total');
     $invoices = Sale::whereDate('created_at',$date)->count();
-    $credit = Credit::whereDate('created_at',$date)->sum('amount');
+    $credit = Credit::whereDate('created_at',$date)->where('is_payback', false )->sum('amount');
     $profit = Sale::whereDate('created_at',$date)->sum('profit');
     $p_total = Purchase::whereDate('created_at',$date)->sum('total');
     $purchase = Purchase::whereDate('created_at',$date)->count();

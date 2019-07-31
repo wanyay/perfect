@@ -10,7 +10,7 @@
       $scope.triggerChar = 9;
 			$scope.separatorChar = 13;
 
-      $http.get('/api/items').success(function(data) {
+      $http.get('/api/purchase/items').success(function(data) {
           $scope.items = data;
       });
 
