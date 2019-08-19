@@ -71,10 +71,12 @@
                                 <option value="">Select Customer</option>
                             	</select>
 													</div>
+                                                    @if (auth()->user()->hasRole('admin'))
 													<div class="field">
 														<label> &nbsp;</label>
 														<a href="" onclick="showModal()" class="ui green icon button basic small modalfour"><i class="green plus icon"></i></a>
 													</div>
+                                                        @endif
 												</div>
 												<div class="two fields" id="cash">
 													<div class="field">

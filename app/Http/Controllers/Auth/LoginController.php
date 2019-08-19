@@ -37,8 +37,21 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
+    /**
+     * Show the application's login form.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function showLoginForm()
     {
         return view('welcome');
+    }
+
+    protected function authenticated($request, $user){
+        if ($user->hasRole('seller')) {
+            return redirect('/sales');
+        } else {
+            return redirect('/');
+        }
     }
 }

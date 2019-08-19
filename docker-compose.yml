@@ -10,7 +10,7 @@ services:
     volumes:
       - ${APP_CODE_PATH_HOST}:${APP_CODE_PATH_CONTAINER}
     ports:
-      - "8010:80"
+      - "1010:80"
     networks:
       backend:
         aliases:

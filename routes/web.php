@@ -14,7 +14,7 @@
 Route::get('/','HomeController@index');
 
 Auth::routes();
-Route::group(['middleware'=>'auth'],function(){
+Route::group(['middleware'=>[ 'auth', 'role:admin' ]],function(){
   Route::get('/dashboard', 'HomeController@index')->name('dashboard');
   Route::resource('/units','UnitsController');
   Route::resource('/producttype','ProductTypeController');
@@ -22,8 +22,6 @@ Route::group(['middleware'=>'auth'],function(){
   Route::resource('/suppliers','SupplierController');
   Route::resource('/items','ItemController');
   Route::get('/inventory/{id}','InventoryController@show');
-  Route::resource('/sales','SaleController');
-  Route::get('/sales/{sale}/print','InventoryController@print_out');
   Route::get('/items/{id}/barcode','ItemController@barcode');
   Route::resource('/credit','CreditController');
   Route::get('/purchases/{id}/print','PurchaseController@print_out');
@@ -34,4 +32,9 @@ Route::group(['middleware'=>'auth'],function(){
   Route::get('/dailys','ApiController\DailyApiController@daily');
   Route::post('/payback','CreditController@payback');
   Route::get('/monthly','ApiController\MonthlyApiController@getMonthlyForm');
+});
+
+Route::group(['middleware' => ['role:admin|seller']], function () {
+    Route::resource('/sales','SaleController');
+    Route::get('/sales/{sale}/print','InventoryController@print_out');
 });
