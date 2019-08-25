@@ -167,18 +167,18 @@
 
             <tr class="heading">
                 <td>No</td>
-				<td>Item</td>
-				<td style="text-align:right">Price</td>
+				<td style="text-align:left">Item</td>
 				<td style="text-align:right">Quantity</td>
+				<td style="text-align:right">Price</td>
 				<td style="text-align:right">Total</td>
             </tr>
 
 				@foreach($saleitems as $key => $si)
 		        <tr class="item">
-                    <td>{{ $key + 1 }}</td>
-		          <td>{{$si->item->name}}</td>
-		          <td style="text-align:right">{{$si->price}} Ks</td>
+                  <td>{{ $key + 1 }}</td>
+		          <td style="text-align:left">{{$si->item->name}}</td>
 		          <td style="text-align:right">{{$si->qty }}</td>
+		          <td style="text-align:right">{{$si->price}} Ks</td>
 		          <td style="text-align:right">{{$si->total_price}} Ks</td>
 		        </tr>
 		        @endforeach
