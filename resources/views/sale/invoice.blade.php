@@ -148,10 +148,10 @@
                     <table>
                         <tr>
                             <td>
-                                Perfect<br>
-                                Dala - War Ba Lauk Thauk Road<br>
-                                Kawhmu Township, Yangon<br>
-                                Phone Number-09446477754, 09950644454, 09684722254
+                                {{ env('SHOP_NAME') }}<br>
+                                {{ env('ROAD_NAME') }}<br>
+                                {{ env('CITY_NAME')}}<br>
+                                Phone Number-{{ env('PH_NO')}}
                             </td>
 														<td></td>
 														<td></td>

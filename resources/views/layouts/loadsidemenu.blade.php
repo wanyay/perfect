@@ -5,9 +5,11 @@
     </a>
     <div class="ui accordion">
 
-        <a class="item" href="{{route('dashboard')}}">
+        <a class="item" href="{{ url('/')}}">
             Dashboard <i class="dashboard icon"></i>
         </a>
+
+        @if(auth()->user()->hasRole('admin'))
         <a class="item" href="{{url('units')}}">
             Units
         </a>
@@ -50,5 +52,12 @@
              Yearly
            </a>
         </div>
+        @else 
+
+        <a class="item" href="{{url('sales')}}">
+            Sale Orders
+        </a>
+
+        @endif
     </div>
 </div>

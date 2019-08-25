@@ -18,6 +18,7 @@
                     </ul>
                 </div>
             </li>
+            @if(auth()->user()->hasRole('admin'))
             <li>
                 <a href="{{route('dashboard')}}"><i class="fa fa-th-large"></i> <span class="nav-label">Dashboards</span></a>
             </li>
@@ -36,6 +37,10 @@
             <li>
                 <a href="{{url('items')}}"><i class="fa fa-product-hunt"></i><span class="nav-label">Items</span></a>
             </li>
+            <li>
+                <a href="{{url('sales')}}"><i class="fa fa-product-hunt"></i><span class="nav-label">Sales</span></a>
+            </li>
+            @else
             <li>
                 <a href="{{url('sales')}}"><i class="fa fa-product-hunt"></i><span class="nav-label">Sales</span></a>
             </li>
