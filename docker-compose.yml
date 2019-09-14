@@ -10,7 +10,7 @@ services:
     volumes:
       - ${APP_CODE_PATH_HOST}:${APP_CODE_PATH_CONTAINER}
     ports:
-      - "1010:80"
+      - "8200:80"
     networks:
       backend:
         aliases:
@@ -33,10 +33,12 @@ services:
     networks:
       - backend
     ports:
-      - "33060:3306"
+      - "3307:3306"
   adminer:
     image: adminer:latest
+    environment:
+      - ADMINER_DESIGN=ng9
     networks:
       - backend
     ports:
-      - 8800:8080
+      - 8201:8080
