@@ -43,6 +43,7 @@ class HomeController extends Controller
         $purchase = Purchase::wheredate('created_at', DB::raw('CURDATE()'))->count();
         $p_credit = SupplierCredit::wheredate('created_at', DB::raw('CURDATE()'))->sum('amount');
         $expense = Expense::wheredate('created_at', DB::raw('CURDATE()'))->sum('amount');
-        return view('dashboard',compact('total','invoices','credit','profit','p_total','purchase','p_credit','expense'));
+        $totalDueDateCredits = Sale::where('credit_due_date', DB::raw('CURDATE()'))->count();
+        return view('dashboard',compact('total','invoices','credit','profit','p_total','purchase','p_credit','expense', 'totalDueDateCredits'));
     }
 }

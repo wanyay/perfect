@@ -99,7 +99,7 @@
             </div>
         </div>
     </div>
-        <div class="row">
+    <div class="row">
         <div class="eight wide tablet four wide computer column">
             <div class="ui horizontal segments">
                 <div class="ui inverted teal segment center aligned">
@@ -188,6 +188,30 @@
                 </div>
             </div>
         </div>
+    </div>
+    <div class="row">
+        <div class="eight wide tablet four wide computer column">
+            <div class="ui horizontal segments">
+                <div class="ui inverted teal segment center aligned">
+                    <div class="ui inverted  statistic">
+                        <div class="value" style="font-size: 23px;">
+                            {{$totalDueDateCredits}}
+                        </div>
+                        <div class="label">
+                            Credit Due Date
+                        </div>
+                    </div>
+                </div>
+                <div class="ui inverted teal tertiary segment center aligned">
+                   <div class="ui inverted  statistic">
+                        <div class="value">
+                            <a style="color:white;" href="{{ url('getTodayDueCredits') }}">Today</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     </div>
 </div>
 @endsection

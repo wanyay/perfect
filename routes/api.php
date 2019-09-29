@@ -27,3 +27,4 @@
     Route::post('/suppliers',"ApiController\SupplierApiController@store");
     Route::get('/daily/{date}',"ApiController\DailyApiController@dailychange");
     Route::post('/monthly',"ApiController\MonthlyApiController@getMonthlyData");
+    

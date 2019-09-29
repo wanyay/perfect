@@ -13,12 +13,6 @@
 
 Route::get('/','HomeController@index');
 
-Route::get('/test', function () {
-  $sale = new App\Sale();
-
-  dd($sale->generateInvoiceCode());
-});
-
 Auth::routes();
 Route::group(['middleware'=>[ 'auth', 'role:admin' ]],function(){
   Route::get('/dashboard', 'HomeController@index')->name('dashboard');
@@ -38,6 +32,7 @@ Route::group(['middleware'=>[ 'auth', 'role:admin' ]],function(){
   Route::get('/dailys','ApiController\DailyApiController@daily');
   Route::post('/payback','CreditController@payback');
   Route::get('/monthly','ApiController\MonthlyApiController@getMonthlyForm');
+  Route::get('/getTodayDueCredits', "ApiController\CustomerApiController@getTodayDueCredits");
 });
 
 Route::group(['middleware' => ['role:admin|seller']], function () {
