@@ -159,8 +159,11 @@
 							<td></td>
                             <td style="text-align:right">
 								@if($sale->customer)
-									Customer Name : {{ $sale->customer->name }}</br>
-								@endif
+                                    Customer Name : {{ $sale->customer->name }}</br>
+                                @endif
+                                @if($sale->credit_due_date)
+                                    Credit Due Date : {{ $sale->credit_due_date }}</br>
+                                @endif
                             </td>
                         </tr>
                     </table>

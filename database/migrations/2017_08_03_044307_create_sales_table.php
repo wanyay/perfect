@@ -22,6 +22,7 @@ class CreateSalesTable extends Migration
             $table->integer('total');
             $table->integer('discount');
             $table->integer('profit');
+            $table->date('credit_due_date')->nullable();
             $table->timestamps();
         });
     }

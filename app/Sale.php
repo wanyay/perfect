@@ -8,7 +8,7 @@ class Sale extends Model
 {
     protected $table = 'sales';
 
-    protected $fillable = ['code','customer_id','payment_type','profit','cash','discount','total'];
+    protected $fillable = ['code','customer_id','payment_type','profit','cash','discount', 'credit_due_date', 'total'];
 
     public function customer()
     {

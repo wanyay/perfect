@@ -28,6 +28,7 @@
                           <th>Name</th>
                           <th>Phone</th>
                           <th>Address</th>
+                          <th>Total Credit</th>
                           <th>Action</th>
                       </tr>
                       </thead>
@@ -37,6 +38,7 @@
                           <td>{{$customer->name}}</td>
                           <td>{{$customer->phone}}</td>
                           <td>{{$customer->address}}</td>
+                          <td>{{$customer->total_credits}}</td>
                           <td>
                               <center>
                                 <a href="{{ url('/credit/'.$customer->id)}}"><i class="eye icon"></i></a>

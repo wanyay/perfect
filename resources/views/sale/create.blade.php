@@ -64,20 +64,28 @@
 													<div class="field">
 													</div>
 												</div>
-												<div class="two fields" id="customer">
+												<div id="customer">
+                        <div class="two fields">
 													<div class="field">
 														<label>Customer</label>
                             <select id="customer" class="form-control" name = "customer_id" ng-options="cu.id as cu.name for cu in customers track by cu.id" data-ng-model="selectedOption">
                                 <option value="">Select Customer</option>
-                            	</select>
-													</div>
-                                                    @if (auth()->user()->hasRole('admin'))
-													<div class="field">
-														<label> &nbsp;</label>
-														<a href="" onclick="showModal()" class="ui green icon button basic small modalfour"><i class="green plus icon"></i></a>
-													</div>
-                                                        @endif
-												</div>
+                            </select>
+                          </div>
+                          @if (auth()->user()->hasRole('admin'))
+                            <div class="field">
+                              <label> &nbsp;</label>
+                              <a href="" onclick="showModal()" class="ui green icon button basic small modalfour"><i class="green plus icon"></i></a>
+                            </div>
+                           @endif
+                        </div>
+                        <div class="two fields"> 
+                          <div class="field">
+                            <label>Credit Due Date</label>
+                            {!! Form::date('credit_due_date', now(),null, ['required']) !!}
+                          </div>
+                        </div>
+                        </div>
 												<div class="two fields" id="cash">
 													<div class="field">
 														<label>Cash</label>

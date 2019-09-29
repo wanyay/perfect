@@ -44,8 +44,8 @@ class SaleController extends Controller
 
     public function store(Request $request)
     {
-        DB::beginTransaction();
         try {
+            DB::beginTransaction();
             $sale = new Sale();
             $sale->code= $request->code;
             $sale->payment_type = $request->payment_type;
@@ -55,6 +55,7 @@ class SaleController extends Controller
             $sale->profit = $request->profit - $request->discount;
             $sale->total = $request->total - $request->discount;
             $sale->created_at = $request->created_at;
+            $sale->credit_due_date = $request->credit_due_date;
             $sale->save();
             
             if ($request->payment_type == 'credit') {

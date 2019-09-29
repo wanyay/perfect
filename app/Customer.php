@@ -49,4 +49,12 @@ class Customer extends Model
 
         return $credits - $paybacks;
     }
+
+    public function getTotalCreditsAttribute()
+    {
+        $credits = $this->getAllCredits()->sum('amount');
+        $paybacks = $this->getAllPaybacks()->sum('amount');
+
+        return $credits - $paybacks;
+    }
 }
