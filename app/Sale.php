@@ -14,4 +14,36 @@ class Sale extends Model
     {
     	return $this->belongsTo('App\Customer');
     }
+
+    public function generateInvoiceCode()
+    {
+        $model = self::latest()->first();
+        $year = date('Y');
+        $month = date('m');
+        $totalInvoiceCountByMonths = self::whereMonth('created_at', $month)->whereYear('created_at', $year)->count();        
+        if (is_null($model)) {
+            
+            return $year . $month . "0001";
+
+        } else {
+            switch (strlen($totalInvoiceCountByMonths)) {
+                case 1:
+                    $invoiceNo = "000" . $totalInvoiceCountByMonths;
+                    break;
+                case 2:
+                    $invoiceNo = "00" . $totalInvoiceCountByMonths;
+                    break;
+                case 3:
+                    $invoiceNo = "0" . $totalInvoiceCountByMonths;
+                    break;
+                default:
+                    $invoiceNo = $totalInvoiceCountByMonths;
+                    
+            }
+
+            return $year . $month . $invoiceNo + 1;
+
+        }
+        
+    }
 }

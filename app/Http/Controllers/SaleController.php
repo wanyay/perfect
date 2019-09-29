@@ -30,7 +30,8 @@ class SaleController extends Controller
 
     public function create()
     {
-        return view('sale.create');
+        $invoiceNo = (new Sale())->generateInvoiceCode();
+        return view('sale.create', compact('invoiceNo'));
     }
 
     public function edit($id)

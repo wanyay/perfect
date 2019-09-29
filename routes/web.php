@@ -13,6 +13,12 @@
 
 Route::get('/','HomeController@index');
 
+Route::get('/test', function () {
+  $sale = new App\Sale();
+
+  dd($sale->generateInvoiceCode());
+});
+
 Auth::routes();
 Route::group(['middleware'=>[ 'auth', 'role:admin' ]],function(){
   Route::get('/dashboard', 'HomeController@index')->name('dashboard');

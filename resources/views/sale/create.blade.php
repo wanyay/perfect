@@ -42,7 +42,7 @@
 												<div class="two fields">
 													<div class="field">
 														<label>Code</label>
-														{!! Form::text('code',null,['class'=>'form-control','required','placeholder' => 'Code'])!!}
+														{!! Form::text('code',$invoiceNo,['class'=>'form-control','required','placeholder' => 'Code'])!!}
 													</div>
 													<div class="field">
 													</div>
