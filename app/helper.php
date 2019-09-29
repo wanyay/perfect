@@ -14,3 +14,7 @@ function flash($title = null,$message = null)
 function now() {
     return Carbon\Carbon::now();
 }
+
+function nextWeek() {
+	return Carbon\Carbon::now()->addDays(7);
+}

@@ -128,7 +128,7 @@
     <div class="invoice-box" id="print">
         <table cellpadding="0" cellspacing="0">
             <tr class="top">
-                <td colspan="4">
+                <td colspan="5">
                     <table>
                         <tr>
                             <td class="title">
@@ -136,9 +136,10 @@
                             </td>
 								<td></td>
 								<td></td>
+                                <td></td>   
 								<td style="text-align:right">
 									Invoice No : {{ $sale->code  }}</br>
-									Date : {{ $sale->created_at}}
+									Date : {{ $sale->created_at->format('Y-m-d')}}
                             </td>
                         </tr>
                     </table>
@@ -146,7 +147,7 @@
             </tr>
 
             <tr class="information">
-                <td colspan="4">
+                <td colspan="5">
                     <table>
                         <tr>
                             <td>
@@ -172,16 +173,16 @@
 
             <tr class="heading">
                 <td style="width: 15px;">No</td>
-				<td style="text-align:left;">Item</td>
-				<td style="text-align:right;width: 20px;">Quantity</td>
-				<td style="text-align:right;width: 150px;">Price</td>
-				<td style="text-align:right">Total</td>
+				<td style="text-align:center;">Item</td>
+				<td style="text-align:center;width: 100px;">Quantity</td>
+				<td style="text-align:center;width: 150px;">Price</td>
+				<td style="text-align:center;">Total</td>
             </tr>
 				@foreach($saleitems as $key => $si)
 		        <tr class="item">
                   <td>{{ $key + 1 }}</td>
 		          <td style="text-align:left">{{$si->item->name}}</td>
-		          <td style="text-align:right">{{$si->qty }}</td>
+		          <td style="text-align:right">{{$si->qty }} {{ $si->item->unit->code }}</td>
 		          <td style="text-align:right">{{$si->price}} Ks</td>
 		          <td style="text-align:right">{{$si->total_price}} Ks</td>
                 </tr>

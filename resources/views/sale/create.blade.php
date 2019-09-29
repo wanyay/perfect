@@ -82,7 +82,7 @@
                         <div class="two fields"> 
                           <div class="field">
                             <label>Credit Due Date</label>
-                            {!! Form::date('credit_due_date', now(),null, ['required']) !!}
+                            {!! Form::date('credit_due_date', nextWeek(),null, ['required']) !!}
                           </div>
                         </div>
                         </div>
