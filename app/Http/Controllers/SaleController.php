@@ -55,7 +55,9 @@ class SaleController extends Controller
             $sale->profit = $request->profit - $request->discount;
             $sale->total = $request->total - $request->discount;
             $sale->created_at = $request->created_at;
-            $sale->credit_due_date = $request->credit_due_date;
+            if ($request->payment_type == 'credit') {
+                $sale->credit_due_date = $request->credit_due_date;
+            }
             $sale->save();
             
             if ($request->payment_type == 'credit') {
