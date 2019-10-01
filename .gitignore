@@ -14,3 +14,5 @@ npm-debug.log
 yarn-error.log
 .env
 docker-compose.yml
+.php_cs.cache
+.phpstorm.meta.php
