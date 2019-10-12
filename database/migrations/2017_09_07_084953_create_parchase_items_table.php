@@ -15,14 +15,20 @@ class CreateParchaseItemsTable extends Migration
     {
         Schema::create('parchase_items', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('purchase_id');
-            $table->integer('item_id');
+            $table->bigInteger('purchase_id')->unsigned()->nullable();
+            $table->bigInteger('item_id')->unsigned()->nullable();
             $table->integer('cost');
             $table->integer('price');
             $table->integer('total_cost');
             $table->integer('total_price');
             $table->integer('qty');
             $table->timestamps();
+
+            $table->foreign('purchase_id')->references('id')
+                ->on('parchases')->onDelete('set null');
+
+            $table->foreign('item_id')->references('id')
+                ->on('items')->onDelete('set null');
         });
     }
 

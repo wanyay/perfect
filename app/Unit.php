@@ -12,6 +12,6 @@ class Unit extends Model
 
     public function item()
     {
-      return $this->hasMany('App\Item');
+        return $this->hasMany(Item::class);
     }
 }

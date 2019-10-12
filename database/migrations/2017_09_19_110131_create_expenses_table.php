@@ -15,9 +15,12 @@ class CreateExpensesTable extends Migration
     {
         Schema::create('expenses', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('category_id');
+            $table->bigInteger('category_id')->unsigned()->nullable();
             $table->integer('amount');
             $table->timestamps();
+
+            $table->foreign('category_id')->references('id')
+                ->on('categories')->onDelete('set null');
         });
     }
 

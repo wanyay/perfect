@@ -11,16 +11,22 @@
 |
 */
 
+use App\Item;
+
 Route::get('/', 'HomeController@index');
 
 Route::get('/test', function () {
-
+    $items = Item::all()->filter(function (Item $item) {
+        return $item->prices()->sum('qty') > 0 ?  true : false;
+    });
+    foreach ($items as $item) {
+        echo $item->prices()->latest()->first()->id . "<br>";
+    }
 });
 
 Auth::routes();
 
 Route::group(['middleware'=>[ 'auth', 'role:admin' ]], function () {
-
     Route::get('/dashboard', 'HomeController@index')->name('dashboard');
 
     Route::resource('/units', 'UnitsController');
@@ -57,7 +63,6 @@ Route::group(['middleware'=>[ 'auth', 'role:admin' ]], function () {
 });
 
 Route::group(['middleware' => ['role:admin|seller']], function () {
-
     Route::resource('/sales', 'SaleController');
 
     Route::get('/sales/{sale}/print', 'InventoryController@printOut');

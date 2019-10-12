@@ -14,13 +14,16 @@ class CreateParchasesTable extends Migration
     public function up()
     {
         Schema::create('parchases', function (Blueprint $table) {
-            $table->increments('id');
+            $table->bigIncrements('id');
             $table->string('code');
-            $table->integer('supplier_id')->nullable();
+            $table->bigInteger('supplier_id')->unsigned()->nullable();
             $table->string('payment_type');
             $table->string('cash')->nullable();
             $table->integer('total');
             $table->timestamps();
+
+            $table->foreign('supplier_id')->references('id')
+                ->on('suppliers')->onDelete('set null');
         });
     }
 

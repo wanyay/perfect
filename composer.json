@@ -8,11 +8,12 @@
         "php": ">=5.6.4",
         "ext-json": "*",
         "barryvdh/laravel-dompdf": "^0.8.5",
-        "barryvdh/laravel-ide-helper": "^2.6",
         "doctrine/dbal": "^2.9",
-        "laravel/framework": "5.5.*",
+        "fideloper/proxy": "^4.0",
+        "laravel/framework": "5.8.*",
         "laravel/tinker": "~1.0",
         "laravelcollective/html": "^5.3.0",
+        "maatwebsite/excel": "^3.1",
         "milon/barcode": "^5.3",
         "picqer/php-barcode-generator": "^0.2.1",
         "predis/predis": "^1.1",
@@ -20,6 +21,7 @@
     },
     "require-dev": {
         "filp/whoops": "~2.0",
+        "barryvdh/laravel-ide-helper": "^2.6",
         "fzaninotto/faker": "~1.4",
         "mockery/mockery": "0.9.*",
         "phpunit/phpunit": "~6.0"
@@ -53,12 +55,10 @@
             "php artisan key:generate"
         ],
         "post-install-cmd": [
-            "Illuminate\\Foundation\\ComposerScripts::postInstall",
-            "php artisan optimize"
+            "Illuminate\\Foundation\\ComposerScripts::postInstall"
         ],
         "post-update-cmd": [
-            "Illuminate\\Foundation\\ComposerScripts::postUpdate",
-            "php artisan optimize"
+            "Illuminate\\Foundation\\ComposerScripts::postUpdate"
         ]
     },
     "config": {

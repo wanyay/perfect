@@ -14,15 +14,21 @@ class CreateItemsTable extends Migration
     public function up()
     {
         Schema::create('items', function (Blueprint $table) {
-            $table->increments('id');
+            $table->bigIncrements('id');
             $table->string('code');
             $table->string('name');
             $table->integer('cost');
             $table->integer('price');
             $table->integer('qty');
-            $table->integer('unit_id');
-            $table->integer('producttype_id');
+            $table->bigInteger('unit_id')->unsigned()->nullable();
+            $table->bigInteger('product_type_id')->unsigned()->nullable();
             $table->timestamps();
+
+            $table->foreign('unit_id')->references('id')
+                ->on('units')->onDelete('set null');
+
+            $table->foreign('product_type_id')->references('id')
+                ->on('product_types')->onDelete('set null');
         });
     }
 

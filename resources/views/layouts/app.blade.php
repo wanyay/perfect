@@ -10,8 +10,7 @@
     <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
     <!-- Site Properities -->
     <title>Saytanar</title>
-
-
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <link href="{{url('plugins/chartist/chartist.css')}}" rel="stylesheet" />
     <link href="{{url('plugins/datepicker/css/bootstrap-datepicker3.css')}}" rel="stylesheet" />
     <link href="{{url('dist/semantic.min.css')}}" rel="stylesheet" />
@@ -35,7 +34,7 @@
     </div>
     <!--navbar mobile-->
 
-    <div class="pusher">
+    <div class="pusher" id="app">
         <div class="full height">
             <!--Load Sidebar Menu In App.js loadhtml function-->
             <div class="toc" id="sdmu">
@@ -63,7 +62,8 @@
             </div>
         </div>
     </div>
-    <script src="{{url('js/jquery-2.1.4.min.js')}}"></script>
+{{--    <script src="{{url('js/jquery-2.1.4.min.js')}}"></script>--}}
+    <script src="{{ url('js/app.js') }}"></script>
     <script src="{{url('plugins/nicescrool/jquery.nicescroll.min.js')}}"></script>
     <script src="{{url('dist/semantic.min.js')}}"></script>
     <script data-pace-options='{ "ajax": false }' src="{{url('plugins/pacejs/pace.js')}}"></script>

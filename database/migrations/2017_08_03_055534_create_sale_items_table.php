@@ -14,16 +14,24 @@ class CreateSaleItemsTable extends Migration
     public function up()
     {
         Schema::create('sale_items', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('sale_id');
-            $table->integer('item_id');
-            $table->integer('cost');
-            $table->integer('price');
+            $table->bigIncrements('id');
+            $table->bigInteger('sale_id')->unsigned()->nullable();
+            $table->bigInteger('item_id')->unsigned()->nullable();
+            $table->integer('price_id')->unsigned()->nullable();
             $table->integer('total_cost');
             $table->integer('total_price');
             $table->integer('total_profix');
             $table->integer('qty');
             $table->timestamps();
+
+            $table->foreign('sale_id')->references('id')
+                ->on('sales')->onDelete('set null');
+
+            $table->foreign('price_id')->references('id')
+                ->on('prices')->onDelete('set null');
+
+            $table->foreign('item_id')->references('id')
+                ->on('items')->onDelete('set null');
         });
     }
 

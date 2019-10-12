@@ -12,6 +12,6 @@ class Category extends Model
 
     public function expense()
     {
-      return $this->hasMany('App\Expense');
+        return $this->hasMany('App\Expense');
     }
 }

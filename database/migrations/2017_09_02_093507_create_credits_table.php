@@ -14,12 +14,15 @@ class CreateCreditsTable extends Migration
     public function up()
     {
         Schema::create('credits', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('customer_id');
+            $table->bigIncrements('id');
+            $table->bigInteger('customer_id')->unsigned()->nullable();
             $table->integer('amount');
             $table->boolean('is_payback')->default(0);
             $table->string('remark');
             $table->timestamps();
+
+            $table->foreign('customer_id')->references('id')
+                ->on('customers')->onDelete('set null');
         });
     }
 

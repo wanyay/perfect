@@ -14,15 +14,18 @@ class CreateSalesTable extends Migration
     public function up()
     {
         Schema::create('sales', function (Blueprint $table) {
-            $table->increments('id');
+            $table->bigIncrements('id');
             $table->string('code');
-            $table->integer('customer_id')->nullable();
+            $table->bigInteger('customer_id')->unsigned()->nullable();
             $table->string('payment_type');
             $table->string('cash')->nullable();
             $table->integer('total');
             $table->integer('discount');
             $table->integer('profit');
             $table->timestamps();
+
+            $table->foreign('customer_id')->references('id')
+                ->on('customers')->onDelete('set null');
         });
     }
 
