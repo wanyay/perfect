@@ -1,0 +1,43 @@
+version: '3.3'
+
+networks:
+  backend:
+    driver: ${NETWORKS_DRIVER}
+
+services:
+  nginx:
+    image: laravel/nginx:latest
+    volumes:
+      - ${APP_CODE_PATH_HOST}:${APP_CODE_PATH_CONTAINER}
+    ports:
+      - "80:80"
+    networks:
+      backend:
+        aliases:
+          - ${APP_HOST}
+
+  php-fpm:
+    image: laravel/php:latest
+    volumes:
+      - ${APP_CODE_PATH_HOST}:${APP_CODE_PATH_CONTAINER}
+    networks:
+      - backend
+
+  mysql:
+    image: mysql:5.7
+    environment:
+      - MYSQL_DATABASE=perfect
+      - MYSQL_USER=perfect
+      - MYSQL_PASSWORD=perfect
+      - MYSQL_ROOT_PASSWORD=root
+    networks:
+      - backend
+    volumes:
+      - ~/.docker/mysql:/var/lib/mysql
+
+  adminer:
+    image: adminer:latest
+    networks:
+      - backend
+    ports:
+      - 8080:8080

@@ -1,6 +1,6 @@
 <?php
 
-//use Illuminate\Http\Request;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,17 +13,10 @@
 |
 */
 
-// Route::middleware('auth:api')->get('/user', function (Request $request) {
-//     return $request->user();
-// });
+Route::middleware('auth:api')->get('/user', function (Request $request) {
+    return $request->user();
+});
 
-    Route::get('/customers', "ApiController\CustomerApiController@getCustomer");
-    Route::post('/customers', "ApiController\CustomerApiController@store");
-    Route::get('/sale/items', 'ApiController\SaleApiController@getItems');
-    Route::get('/purchase/items', 'ApiController\PurchaseApiController@getItems');
-    Route::get('/saleitem/{id}', 'ApiController\SaleApiController@getSaleItem');
-    Route::get('/purchaseitem/{id}', 'ApiController\PurchaseApiController@getPurchaseItem');
-    Route::get('/suppliers', "ApiController\SupplierApiController@getSupplier");
-    Route::post('/suppliers', "ApiController\SupplierApiController@store");
-    Route::get('/daily/{date}', "ApiController\DailyApiController@dailychange");
-    Route::post('/monthly', "ApiController\MonthlyApiController@getMonthlyData");
+Route::group(['prefix' => 'v1', 'middleware' => 'auth:api'], function () {
+    Route::get('units.search', 'UnitController@search');
+});
