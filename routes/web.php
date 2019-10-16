@@ -13,9 +13,14 @@
 
 
 
-Route::get('/', 'UnitController@index');
 Route::auth();
 
 Route::group(['middleware' => 'auth'], function () {
+    Route::get('/', function () {
+        return view('test');
+    });
+
     Route::resource('units', 'UnitController');
+
+    Route::resource('ptypes', 'ProductTypeController');
 });

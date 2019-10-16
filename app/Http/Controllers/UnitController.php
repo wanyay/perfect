@@ -2,9 +2,6 @@
 namespace App\Http\Controllers;
 
 use App\Services\UnitService;
-use Illuminate\Http\Request;
-
-use App\Models\Unit;
 
 class UnitController extends Controller
 {
@@ -14,6 +11,7 @@ class UnitController extends Controller
     {
         $this->unitService = $unitService;
     }
+
     /**
      * show all of units
      *
@@ -21,7 +19,7 @@ class UnitController extends Controller
      */
     public function index()
     {
-        return view('test');
+        return view('units.index');
     }
 
     /**
@@ -42,51 +40,7 @@ class UnitController extends Controller
 
     public function edit($id)
     {
-        $unit = Unit::findOrFail($id);
-
+        $unit = $this->unitService->getById($id);
         return view('units.edit', compact('unit'));
-    }
-
-    /**
-     * save input data to database
-     *
-     * @return view
-     */
-
-    public function store(Request $request)
-    {
-        $unit = Unit::create($request->all());
-
-        $unit ? flash()->success('Success', 'New Unit has been added.') : flash()->error('Error', 'Something is wrong!');
-
-        return redirect()->action('UnitsController@index');
-    }
-
-    /**
-     * update single unit to database
-     *
-     * @return view
-     */
-    public function update($id, Request $request)
-    {
-        $unit = Unit::findOrFail($id);
-
-        $unit->update($request->all());
-
-        flash()->success('Updated', 'Unit has been updated.');
-
-        return redirect()->action('UnitsController@index');
-    }
-
-    /**
-     * detele single unit
-     *
-     * @return view
-     */
-
-    public function destroy($id)
-    {
-        $unit = Unit::destroy($id);
-        return $unit;
     }
 }

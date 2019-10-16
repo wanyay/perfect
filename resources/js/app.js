@@ -1,11 +1,12 @@
-// import 'jquery';
-import './masonry';
-import './popover';
-import './scrollbar';
-import './sidebar';
-import './chat';
-import './datepicker';
-import './utils';
+import './plugins/masonry';
+import './plugins/charts';
+import './plugins/popover';
+import './plugins/scrollbar';
+import './plugins/sidebar';
+import './plugins/datatable';
+import './plugins/datepicker';
+import './plugins/utils';
+
 import * as $ from "jquery";
 
 window.addEventListener('load', function load()
@@ -17,6 +18,7 @@ window.addEventListener('load', function load()
 });
 
 require('./bootstrap');
+
 
 window._ = require('lodash');
 

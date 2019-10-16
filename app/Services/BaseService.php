@@ -51,7 +51,7 @@ class BaseService
 
     public function create(array $data)
     {
-        return $this->create($data);
+        return $this->model->create($data);
     }
 
     public function update(array $data, $id)

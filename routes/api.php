@@ -18,5 +18,16 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::group(['prefix' => 'v1', 'middleware' => 'auth:api'], function () {
+
+    //Units
     Route::get('units.search', 'UnitController@search');
+    Route::post('units.store', 'UnitController@store');
+    Route::post('units.{id}.update', 'UnitController@update');
+    Route::delete('units.{id}.delete', 'UnitController@destroy');
+
+    //Product Type
+    Route::get('ptypes.search', 'ProductTypeController@search');
+    Route::post('ptypes.store', 'ProductTypeController@store');
+    Route::post('ptypes.{id}.update', 'ProductTypeController@update');
+    Route::delete('ptypes.{id}.delete', 'ProductTypeController@destroy');
 });
