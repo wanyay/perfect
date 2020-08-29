@@ -42,7 +42,7 @@
         </div>
       </div>
 
-    <div class="ten wide column">
+    <div class="eleven wide column">
             <div class="ui segments">
                   <div class="ui segment">
                       <h5 class="ui header">Invoice</h5>

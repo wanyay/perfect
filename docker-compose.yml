@@ -3,40 +3,28 @@ version: '3.3'
 networks:
   backend:
     driver: ${NETWORKS_DRIVER}
+  default:
+    external: 
+      name: database
 
 services:
   nginx:
-    image: wanyay/nginx:latest
+    image: laravel/nginx:latest
     volumes:
       - ${APP_CODE_PATH_HOST}:${APP_CODE_PATH_CONTAINER}
     ports:
-      - "1010:80"
+      - "80:80"
     networks:
       backend:
         aliases:
           - ${APP_HOST}
+    restart: always
+
   php-fpm:
-    image: wanyay/laravel-php:latest
+    image: laravel/php:latest
     volumes:
       - ${APP_CODE_PATH_HOST}:${APP_CODE_PATH_CONTAINER}
     networks:
       - backend
-  mysql:
-    image: mysql:5.7
-    environment:
-      - MYSQL_DATABASE=perfect
-      - MYSQL_USER=perfect
-      - MYSQL_PASSWORD=perfect
-      - MYSQL_ROOT_PASSWORD=root
-    volumes:
-      - ~/.docker/perfect/:/var/lib/mysql
-    networks:
-      - backend
-    ports:
-      - "33060:3306"
-  adminer:
-    image: adminer:latest
-    networks:
-      - backend
-    ports:
-      - 8800:8080
+      - default
+    restart: always
