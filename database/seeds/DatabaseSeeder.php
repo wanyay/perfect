@@ -14,17 +14,15 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $admin_role = Role::create(['name' => 'admin']);
-        $seller_role = Role::create(['name' => 'seller']);
-        $admin = User::where('email', 'saydanathanhtike@gmail.com')->first();
-        $admin->assignRole($admin_role);
 
-        $seller = User::create([
-           'name' => "Seller One",
-           'email' => "sellerone@perfect.com",
-           'password' => bcrypt('sellerperfect')
+
+        $admin = User::create([
+           'name' => "Admin",
+           'email' => "admin@saytanar.com",
+           'password' => bcrypt('01268268')
         ]);
 
-        $seller->assignRole($seller_role);
+        $admin->assignRole($admin_role);
 
 
 

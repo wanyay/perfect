@@ -154,7 +154,7 @@
                                 {{ env('SHOP_NAME') }}<br>
                                 {{ env('ROAD_NAME') }}<br>
                                 {{ env('CITY_NAME')}}<br>
-                                Phone Number-{{ env('PH_NO')}}
+                                ဖုန်း - {{ env('PH_NO')}}
                             </td>
 							<td></td>
 							<td></td>
