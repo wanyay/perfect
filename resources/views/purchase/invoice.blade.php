@@ -148,19 +148,12 @@
                     <table>
                         <tr>
                             <td>
-                                {{ env('SHOP_NAME') }}<br>
-                                {{ env('ROAD_NAME') }}<br>
-                                {{ env('CITY_NAME')}}<br>
-                                Phone Number-{{ env('PH_NO')}}
+                                {{ $purchase->supplier->name }}<br>
+                                {{ $purchase->supplier->address }}<br>
+                                Phone - {{ $purchase->supplier->phone}}
                             </td>                                       
-														<td></td>
-														<td></td>
-                            <td style="text-align:right">
-															@if($purchase->customer)
-																Customer Name : {{ $purchase->customer->name }}</br>
-															@endif
-Payment Duedate : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            </td>
+                            <td></td>
+                            <td></td>
                         </tr>
                     </table>
                 </td>
