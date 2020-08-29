@@ -30,7 +30,7 @@
                     <input id="bCode" ng-model="searchKeyword" type="text" placeholder="Item Code" style="padding-right:25px">
                   </div>
                   <div class="scroll_content">
-                    <a ng-repeat="item in items  | filter: searchKeyword" class="item"  ng-click="addSaleTemp(item)">
+                    <a ng-repeat="item in items  | filter: searchKeyword" class="item"  ng-click="addPurchaseTemp(item)">
                       @{{item.name}}<i class="icon green plus"></i>
                     </a>
                   </div>
