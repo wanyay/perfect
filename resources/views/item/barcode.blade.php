@@ -4,6 +4,14 @@
     <meta charset="utf-8">
     <title>Barcode</title>
     <link rel="stylesheet" href="{{ url('css/bootstrap.min.css')}}">
+    <style>
+      .pull-left{
+        font-size: 10px
+      }
+      .pull-right{
+        font-size: 10px
+      }
+    </style>
   </head>
   <body>
     <?php
@@ -18,60 +26,50 @@
       	@for($i = 1 ; $i <= 10 ; $i++)
         <tr>
           <td>
-            <center>
-              <img src="data:image/png;base64,{{DNS1D::getBarcodePNG($item->code, 'C128')}}" alt="barcode" style="margin-top:20px;margin-bottom:20px" /><br>
-            </center>
             <div class="pull-left">
             	{{ $item->code}} 	
             </div>
+              <img src="data:image/png;base64,{{DNS1D::getBarcodePNG($item->code, 'C128')}}" alt="barcode" style="margin-top:10px;margin-bottom:10px" />
            	<div class="pull-right">
             	{{ $item->price}}Ks
            	</div>
           </td>
           <td>
-            <center>
-              <img src="data:image/png;base64,{{DNS1D::getBarcodePNG($item->code, 'C128')}}" alt="barcode" style="margin-top:20px;margin-bottom:20px" /><br>
-            </center>
             <div class="pull-left">
             	{{ $item->code}} 	
             </div>
+              <img src="data:image/png;base64,{{DNS1D::getBarcodePNG($item->code, 'C128')}}" alt="barcode" style="margin-top:10px;margin-bottom:10px" />
            	<div class="pull-right">
             	{{ $item->price}}Ks
            	</div>
           </td>
           <td>
-            <center>
-              <img src="data:image/png;base64,{{DNS1D::getBarcodePNG($item->code, 'C128')}}" alt="barcode" style="margin-top:20px;margin-bottom:20px" /><br>
-            </center>
-           	<div class="pull-left">
+            <div class="pull-left">
             	{{ $item->code}} 	
             </div>
+              <img src="data:image/png;base64,{{DNS1D::getBarcodePNG($item->code, 'C128')}}" alt="barcode" style="margin-top:10px;margin-bottom:10px" />
            	<div class="pull-right">
             	{{ $item->price}}Ks
            	</div>
           </td>
           <td>
-            <center>
-              <img src="data:image/png;base64,{{DNS1D::getBarcodePNG($item->code, 'C128')}}" alt="barcode" style="margin-top:20px;margin-bottom:20px" /><br>
-            </center>
             <div class="pull-left">
             	{{ $item->code}} 	
             </div>
+              <img src="data:image/png;base64,{{DNS1D::getBarcodePNG($item->code, 'C128')}}" alt="barcode" style="margin-top:10px;margin-bottom:10px" />            
            	<div class="pull-right">
             	{{ $item->price}}Ks
            	</div>
           </td>
-<!--           <td>
-            <center>
-              <img src="data:image/png;base64,{{DNS1D::getBarcodePNG($item->code, 'C128')}}" alt="barcode" style="margin-top:20px;margin-bottom:20px" /><br>
-            </center>
-           	<div class="pull-left">
-            	{{ $item->code}} 	
+          <td>
+            <div class="pull-left">
+                {{ $item->code}} 	
             </div>
+              <img src="data:image/png;base64,{{DNS1D::getBarcodePNG($item->code, 'C128')}}" alt="barcode" style="margin-top:10px;margin-bottom:10px" />
            	<div class="pull-right">
             	{{ $item->price}}Ks
            	</div>
-          </td> -->
+          </td>
         </tr>
         @endfor        
       </table>

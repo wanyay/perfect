@@ -89,6 +89,7 @@
             }
         });
         var newitem = $scope.items[index];
+        console.log(newitem);
         $scope.addSaleTemp(newitem);
         $scope.$apply();
       };

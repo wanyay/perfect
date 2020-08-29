@@ -33,8 +33,7 @@
         max-width:800px;
         margin:auto;
         padding:30px;
-        border:1px solid #eee;
-        font-size:16px;
+        font-size:12px;
         line-height:24px;
         font-family:'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
         color:#555;
@@ -131,40 +130,24 @@
                 <td colspan="5">
                     <table>
                         <tr>
-                            <td class="title">
-                                <img src="{{url('img/home.ico')}}" style="width:20%; max-width:300px;">
+                            <td>
+                            <h4 style="margin: 0px">{{ env('SHOP_NAME') }}</h4><br>
+                                {{ env('ROAD_NAME') }}<br>
+                                {{ env('CITY_NAME')}}<br>
+                                ဖုန်း - {{ env('PH_NO')}}
                             </td>
 								<td></td>
 								<td></td>
                                 <td></td>   
 								<td style="text-align:right">
 									Invoice No : {{ $sale->code  }}</br>
-									Date : {{ $sale->created_at->format('Y-m-d')}}
-                            </td>
-                        </tr>
-                    </table>
-                </td>
-            </tr>
-
-            <tr class="information">
-                <td colspan="5">
-                    <table>
-                        <tr>
-                            <td>
-                                {{ env('SHOP_NAME') }}<br>
-                                {{ env('ROAD_NAME') }}<br>
-                                {{ env('CITY_NAME')}}<br>
-                                ဖုန်း - {{ env('PH_NO')}}
-                            </td>
-							<td></td>
-							<td></td>
-                            <td style="text-align:right">
-								@if($sale->customer)
-                                    Customer Name : {{ $sale->customer->name }}</br>
-                                @endif
-                                @if($sale->credit_due_date)
-                                    Credit Due Date : {{ $sale->credit_due_date }}</br>
-                                @endif
+									Date : {{ $sale->created_at->format('Y-m-d')}} </br>
+                                    @if($sale->customer)
+                                        Customer : {{ $sale->customer->name }}</br>
+                                    @endif
+                                    @if($sale->credit_due_date)
+                                        Credit Due Date : {{ $sale->credit_due_date }}</br>
+                                    @endif
                             </td>
                         </tr>
                     </table>
@@ -233,73 +216,6 @@
 </body>
   <script type="text/javascript">
     function invoiceprint() {
-        // var divToPrint = document.getElementById('print');
-        // var htmlToPrint = '' +
-        //     '<style type="text/css">' +
-            
-        //     '.invoice-box{'+
-        //         'max-width:800px;'+
-        //         'margin:auto;'+
-        //         'padding:30px;'+
-        //         'border:1px solid #eee;'+
-        //         'font-size:16px;'+
-        //         'line-height:24px;'+
-        //         'color:#555;'+
-        //     '}'+
-
-        //     '.invoice-box table{'+
-        //        ' width:100%;'+
-        //         'line-height:inherit;'+
-        //         'text-align:left;'+
-        //     '}'+
-
-        //     '.invoice-box table td{'+
-        //         'padding:5px;'+
-        //         'vertical-align:top;'+
-        //     '}'+
-
-        //     '.invoice-box table tr td:nth-child(2){'+
-        //         'text-align:right;'+
-        //     '}'+
-
-        //     '.invoice-box table tr.top table td{'+
-        //         'padding-bottom:20px;'+
-        //     '}'+
-
-        //     '.invoice-box table tr.top table td.title{'+
-        //         'font-size:45px;'+
-        //         'line-height:45px;'+
-        //         'color:#333;'+
-        //     '}'+
-
-        //     '.invoice-box table tr.information table td{'+
-        //         'padding-bottom:40px;'+
-        //     '}'+
-
-        //     '.invoice-box table tr.heading td{'+
-        //         'border:1px solid black;'+
-        //         'font-weight:bold;'+
-        //     '}'+
-
-        //     '.invoice-box table tr.item td{'+
-        //         'border-right:1px solid black;'+
-        //     '}'+
-
-        //     '.invoice-box table tr.item.last td{'+
-        //         'border-bottom:none;'+
-        //     '}'+
-
-        //     '.invoice-box table tr.total td:nth-child(4){' +
-        //         'border-top:2px solid #eee;' +
-        //         'font-weight:bold;' +
-        //     '}' +
-
-        //     '</style>';
-        // htmlToPrint += divToPrint.outerHTML;
-        // newWin = window.open("");
-        // newWin.document.write(htmlToPrint);
-        // newWin.print();
-        // newWin.close();
         window.print();
     }
   </script>
