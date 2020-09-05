@@ -27,7 +27,7 @@
         <tr>
           <td>
             <div class="pull-left">
-            	{{ $item->code}} 	
+            	{{ $item->code}}
             </div>
               <img src="data:image/png;base64,{{DNS1D::getBarcodePNG($item->code, 'C128')}}" alt="barcode" style="margin-top:10px;margin-bottom:10px" />
            	<div class="pull-right">
@@ -36,7 +36,7 @@
           </td>
           <td>
             <div class="pull-left">
-            	{{ $item->code}} 	
+            	{{ $item->code}}
             </div>
               <img src="data:image/png;base64,{{DNS1D::getBarcodePNG($item->code, 'C128')}}" alt="barcode" style="margin-top:10px;margin-bottom:10px" />
            	<div class="pull-right">
@@ -45,7 +45,7 @@
           </td>
           <td>
             <div class="pull-left">
-            	{{ $item->code}} 	
+            	{{ $item->code}}
             </div>
               <img src="data:image/png;base64,{{DNS1D::getBarcodePNG($item->code, 'C128')}}" alt="barcode" style="margin-top:10px;margin-bottom:10px" />
            	<div class="pull-right">
@@ -54,16 +54,16 @@
           </td>
           <td>
             <div class="pull-left">
-            	{{ $item->code}} 	
+            	{{ $item->code}}
             </div>
-              <img src="data:image/png;base64,{{DNS1D::getBarcodePNG($item->code, 'C128')}}" alt="barcode" style="margin-top:10px;margin-bottom:10px" />            
+              <img src="data:image/png;base64,{{DNS1D::getBarcodePNG($item->code, 'C128')}}" alt="barcode" style="margin-top:10px;margin-bottom:10px" />
            	<div class="pull-right">
             	{{ $item->price}}Ks
            	</div>
           </td>
           <td>
             <div class="pull-left">
-                {{ $item->code}} 	
+                {{ $item->code}}
             </div>
               <img src="data:image/png;base64,{{DNS1D::getBarcodePNG($item->code, 'C128')}}" alt="barcode" style="margin-top:10px;margin-bottom:10px" />
            	<div class="pull-right">
@@ -71,7 +71,7 @@
            	</div>
           </td>
         </tr>
-        @endfor        
+        @endfor
       </table>
   </body>
 </html>
