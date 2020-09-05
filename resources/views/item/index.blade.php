@@ -14,10 +14,11 @@
         <div class="sixteen column">
             <div class="ui segments">
                 <div class="ui segment no-padding-bottom">
-                  <h5 class="ui left floated header">New Suppliers</h5>
-                  <h5 class="ui right floated header">
-                    <a href="{{url('/items/create')}}" class="tiny ui greenli button"><i class="plus icon"></i>New</a>
-                  </h5>
+                    <h5 class="ui left floated header">Items</h5>
+                    <h5 class="ui right floated header">
+                        <a href="{{ route('items.create') }}" class="tiny ui greenli button"><i class="plus icon"></i>New</a>
+                        <a href="{{ route('items.export') }}" class="tiny ui blueli button"><i class="download icon"></i>Export</a>
+                    </h5>
                   <div class="clearfix"></div>
                 </div>
                 <div class="ui segment">

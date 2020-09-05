@@ -20,7 +20,8 @@ Route::group(['middleware'=>[ 'auth', 'role:admin' ]],function(){
   Route::resource('/producttype','ProductTypeController');
   Route::resource('/customers','CustomerController');
   Route::resource('/suppliers','SupplierController');
-  Route::resource('/items','ItemController');
+    Route::get('/items/export', "ItemController@exportExcel")->name('items.export');
+    Route::resource('/items','ItemController');
   Route::get('/inventory/{id}','InventoryController@show');
   Route::get('/items/{id}/barcode','ItemController@barcode');
   Route::resource('/credit','CreditController');

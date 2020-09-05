@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\ItemExport;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 use App\Item;
 
 use App\Inventory;
 
+use Maatwebsite\Excel\Facades\Excel;
 use \Milon\Barcode\DNS1D;
 
 use App\Unit;
@@ -81,6 +84,12 @@ class ItemController extends Controller
         $item = Item::findOrFail($id);
         $barcode = (new DNS1D)->getBarcodePNG($item->code, 'C128');
         return view('item.barcode',compact('item', 'barcode'));
+    }
+
+    public function exportExcel()
+    {
+        $filename = "Item List (" . Carbon::now()->format('F') . ' ' . Carbon::now()->format('Y') . ").xlsx";
+        return Excel::download(new ItemExport(), $filename);
     }
 
 }
