@@ -16,7 +16,7 @@
   @include('errors.validation')
 
   <div class="row">
-      <div class="three wide column">
+      <div class="five wide column">
 
         <div class="ui segments">
             <div class="ui segment">
@@ -42,7 +42,7 @@
         </div>
       </div>
 
-    <div class="thirteen wide column">
+    <div class="eleven wide column">
             <div class="ui segments">
                   <div class="ui segment">
                       <h5 class="ui header">Invoice</h5>
@@ -88,6 +88,14 @@
                       </div>
                       <div class="field">
                       </div>
+                    </div>
+                    <div class="two fields" id="cash">
+                        <div class="field">
+                            <label>Discount</label>
+                            <input type="text" class="form-control" name="discount" value={{$sale->discount}}>
+                        </div>
+                        <div class="field">
+                        </div>
                     </div>
                     <div class="two fields">
                       <div class="field">

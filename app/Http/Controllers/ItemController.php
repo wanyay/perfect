@@ -79,7 +79,8 @@ class ItemController extends Controller
     public function barcode($id)
     {
         $item = Item::findOrFail($id);
-        return view('item.barcode',compact('item'));
+        $barcode = (new DNS1D)->getBarcodePNG($item->code, 'C128');
+        return view('item.barcode',compact('item', 'barcode'));
     }
 
 }
