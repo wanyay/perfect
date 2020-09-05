@@ -13,7 +13,7 @@ services:
     volumes:
       - ${APP_CODE_PATH_HOST}:${APP_CODE_PATH_CONTAINER}
     ports:
-      - "80:80"
+      - "8000:80"
     networks:
       backend:
         aliases:
