@@ -17,7 +17,7 @@ class InventoryController extends Controller
     public function show($id)
     {
         $item = Item::with(['unit','producttype'])->findOrfail($id);
-        $inventories = Inventory::orderBy('created_at','decs')->where('item_id','=',$id)->paginate(5);
+        $inventories = Inventory::orderBy('created_at','desc')->where('item_id','=',$id)->paginate(5);
         return view('inventory.show',compact('inventories','item'));
     }
     public function print_out($id)
