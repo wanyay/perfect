@@ -1,77 +1,123 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-    <!-- Standard Meta -->
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
-    <link rel="image_src" type="image/jpeg" href="/images/logo.png" />
-    <link rel="icon" href="img/favicon.ico" type="image/x-icon" />
-    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
-    <!-- Site Properities -->
-    <title>Saytanar</title>
-
-
-    <link href="{{url('plugins/chartist/chartist.css')}}" rel="stylesheet" />
-    <link href="{{url('plugins/datepicker/css/bootstrap-datepicker3.css')}}" rel="stylesheet" />
-    <link href="{{url('dist/semantic.min.css')}}" rel="stylesheet" />
-    <link href="{{url('css/main.min.css')}}" rel="stylesheet" />
-    <link href="{{url('plugins/pacejs/pace.css')}}" rel="stylesheet" />
-    <link rel="stylesheet" type="text/css" href="{{ url('css/plugins/toastr/toastr.min.css') }}">
-    @yield('styles')
-    <script>
-        window.Laravel = <?php echo json_encode([
-            'csrfToken' => csrf_token(),
-        ]); ?>
-    </script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset("images/favicon.png") }}">
+    <title>@yield('title') | Saytana</title>
+    <!-- Bootstrap Core CSS -->
+    <link href="{{ asset("assets/plugins/bootstrap/css/bootstrap.min.css") }}" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href={{ asset("css/style.css") }} rel="stylesheet">
+    <link href="{{ asset("css/custom.css") }}" rel="stylesheet">
+    <!-- You can change the theme colors from here -->
+    <link href={{ asset("css/colors/blue.css") }} id="theme" rel="stylesheet">
+    <style>
+        body.mm {
+            font-size: 0.9rem;
+        }
+    </style>
 </head>
-<body class="admin" ng-app = "saytanar">
-    <!--sidebar mobile-->
-    <div class="ui vertical push sidebar menu  thin" id="toc">
-    </div>
-    <!--sidebar mobile-->
-    <!--navbar mobile-->
-    <div class="mobilenavbar">
-    </div>
-    <!--navbar mobile-->
 
-    <div class="pusher">
-        <div class="full height">
-            <!--Load Sidebar Menu In App.js loadhtml function-->
-            <div class="toc" id="sdmu">
-              @include('layouts.loadsidemenu')
-            </div>
-            <!--Load Sidebar Menu In App.js loadhtml function-->
-
-            <div class="article">
-
-                <!--Load Navbar Menu In App.js loadhtml function-->
-                <div class="navbarmenu" id="nbr">
-                    @include('layouts.loadnavbar')
+<body class="fix-header fix-sidebar card-no-border {{ app()->getLocale() }}">
+<div class="preloader">
+    <svg class="circular" viewBox="25 25 50 50">
+        <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" /> </svg>
+</div>
+<div id="app">
+    <div id="main-wrapper">
+        <header class="topbar">
+            <nav class="navbar top-navbar navbar-toggleable-sm navbar-light">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="{{ url("/") }}">
+                        <b><img src="{{ asset("images/logo-icon.png") }}" alt="homepage" class="dark-logo" /></b>
+                        <span> <img src="{{ asset("images/logo-text.png") }}" alt="homepage" class="dark-logo" /></span>
+                    </a>
                 </div>
-                <!--Load Navbar Menu In App.js loadhtml function-->
-                <!--Begin Container-->
-                <div class="containerli">
-                  @yield('content')
-                  <div class="footer"></div>
+                <div class="navbar-collapse">
+                    <ul class="navbar-nav mr-auto mt-md-0 ">
+                        <li class="nav-item">
+                            <a class="nav-link nav-toggler hidden-md-up text-muted waves-effect waves-dark">
+                                <i class="ti-menu"></i>
+                            </a>
+                        </li>
+                        <li class="nav-item hidden-sm-down">
+                            <form class="app-search p-l-20">
+                                <input type="text" class="form-control" placeholder="Search for..."> <a class="srh-btn"><i class="ti-search"></i></a>
+                            </form>
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav my-lg-0">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark" data-toggle="dropdown"
+                               href="#" data-toggle="dropdown" id="navbarDropdown" aria-haspopup="true" aria-expanded="false">
+                                <img src="{{ url("images/users/1.jpg") }}" alt="user" class="profile-pic m-r-5"/>
+                                {{ Auth::user()->name }}
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{ url('/logout') }}" onclick="event.preventDefault();
+                                    document.getElementById('logout-form').submit();"> <i class="fa fa-sign-out" aria-hidden="true"></i>Sign Out
+                                    <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+                                        {{ csrf_field() }}
+                                    </form>
+                                </a>
+                            </div>
+                        </li>
+                    </ul>
                 </div>
+            </nav>
+        </header>
+        <aside class="left-sidebar">
+            <!-- Sidebar scroll-->
+            <div class="scroll-sidebar">
+                <!-- Sidebar navigation-->
+                <nav class="sidebar-nav">
+                    <ul id="sidebarnav">
+                        <li>
+                            <a href={{ url("/") }} class="waves-effect"><i class="fa fa-clock-o m-r-10" aria-hidden="true"></i>Dashboard</a>
+                        </li>
+                    </ul>
+                </nav>
             </div>
-                <!--Finish Container-->
-                <!--Load Footer Menu In App.js loadhtml function-->
+            <!-- End Sidebar scroll-->
+        </aside>
+        <div class="page-wrapper">
 
-                <!--Load Footer Menu In App.js loadhtml function-->
-            </div>
+            @yield("content")
+            <footer class="row footer">
+                <div class="mr-auto ml-3 text-left">
+                    Version 1.0
+                </div>
+                <div class="ml-auto mr-3 text-right">
+                    © 2020 Saydana
+                </div>
+            </footer>
         </div>
     </div>
-    <script src="{{url('js/jquery-2.1.4.min.js')}}"></script>
-    <script src="{{url('plugins/nicescrool/jquery.nicescroll.min.js')}}"></script>
-    <script src="{{url('dist/semantic.min.js')}}"></script>
-    <script data-pace-options='{ "ajax": false }' src="{{url('plugins/pacejs/pace.js')}}"></script>
-    <script src="{{url('js/app.js')}}"></script>
-    <script src="{!! asset('js/sweetalert.js') !!}"></script>
-    <script src="{{ url('js/plugins/toastr/toastr.min.js') }}" type="text/javascript"></script>
-    @include('flash')
-      @yield('scripts')
+</div>
+<script src={{ asset("js/app.js") }}></script>
+<!-- slimscrollbar scrollbar JavaScript -->
+<script src="{{ asset("js/jquery.min.js")  }}"></script>
+<script src={{ asset("js/jquery.slimscroll.js") }}></script>
 
+<script src="{{ asset("assets/plugins/bootstrap/js/tether.min.js")  }}"></script>
+<script src="{{ asset("assets/plugins/bootstrap/js/bootstrap.min.js")  }}"></script>
+<script src={{ asset("js/jquery.slimscroll.js") }}></script>
+<!--Wave Effects -->
+<script src={{ asset("js/waves.js") }}></script>
+<!--Menu sidebar -->
+<script src={{ asset("js/sidebarmenu.js") }}></script>
+<!--stickey kit -->
+<script src={{ asset("js/sticky-kit.min.js") }}></script>
+<!--Custom JavaScript -->
+<script src={{ asset("js/custom.min.js") }}></script>
+<!-- This page plugins -->
+<script src={{ asset("js/jQuery.style.switcher.js") }}></script>
 </body>
+
 </html>

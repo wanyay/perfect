@@ -28,11 +28,6 @@ class HomeController extends Controller
         $this->middleware('auth');
     }
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $total = Sale::wheredate('created_at', DB::raw('CURDATE()'))->sum('total');
@@ -43,7 +38,18 @@ class HomeController extends Controller
         $purchase = Purchase::wheredate('created_at', DB::raw('CURDATE()'))->count();
         $p_credit = SupplierCredit::wheredate('created_at', DB::raw('CURDATE()'))->sum('amount');
         $expense = Expense::wheredate('created_at', DB::raw('CURDATE()'))->sum('amount');
-        $totalDueDateCredits = Sale::where('credit_due_date', DB::raw('CURDATE()'))->count();
-        return view('dashboard',compact('total','invoices','credit','profit','p_total','purchase','p_credit','expense', 'totalDueDateCredits'));
+        $today_sale_credit_invoice = Sale::where('credit_due_date', DB::raw('CURDATE()'))->count();
+//        $today_purchase_credit_invoice = Purchase::where('credit_due_date', DB::raw('CURDATE()'))->count();
+        return view('dashboard',compact(
+            'total',
+            'invoices',
+            'credit',
+            'profit',
+            'p_total',
+            'purchase',
+            'p_credit',
+            'expense',
+            'today_sale_credit_invoice'
+        ));
     }
 }

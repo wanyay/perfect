@@ -1,217 +1,118 @@
 @extends('layouts.app')
-@section('styles')
-<style type="text/css">
-  .ui.inverted.statistic .value{
-    font-size: 2rem;
-    text-transform:none;
-  }
-</style>
-@endsection
+@section("title", "Dashboard")
 @section('content')
-<div class="ui equal width left aligned padded grid stackable">
-    <div class="row">
-        <div class="eight wide tablet four wide computer column">
-            <div class="ui horizontal segments">
-                <div class="ui inverted teal segment center aligned">
 
-                    <div class="ui inverted  statistic">
-                        <div class="value" style="font-size: 23px;">
-                            {{$invoices}}
-                        </div>
-                        <div class="label">
-                            Invoices
+    <div class="container-fluid">
+        <div class="row page-titles">
+            <div class="col-md-6 col-8 align-self-center">
+                <h3 class="text-themecolor m-b-0 m-t-0">Dashboard</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="card">
+                    <div class="card-block">
+                        <h4 class="card-title">{{ __('dashboard.today_sales') }}</h4>
+                        <div class="row">
+                            <div class="mr-auto ml-3 text-left">
+                                <h2 class="font-light m-b-0">{{ $invoices }}</h2>
+                                <span class="text-muted">{{ __('dashboard.invoices') }}</span>
+                            </div>
+                            <div class="ml-auto mr-3 text-right">
+                                <h2 class="font-light m-b-0">{{ $total }}
+                                    <span class="font-10">
+                                        {{ __('dashboard.currency') }}
+                                    </span>
+                                </h2>
+                                <span class="text-muted">{{ __('dashboard.today_income') }}</span>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="ui inverted teal tertiary segment center aligned">
-                   <div class="ui inverted  statistic">
-                        <div class="value" style="font-size: 23px;">
-                            Today
+            </div>
+            <div class="col-sm-4">
+                <div class="card">
+                    <div class="card-block">
+                        <h4 class="card-title">{{ __('dashboard.today_sale_credit') }}</h4>
+                        <div class="row">
+                            <div class="ml-auto mr-3 text-right">
+                                <div class="text-right">
+                                    <h2 class="font-light m-b-0">{{ $credit }} <span class="font-10">{{ __('dashboard.currency') }}</span></h2>
+                                    <span class="text-muted">{{ __('dashboard.today_sale_credit') }}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="card">
+                    <div class="card-block">
+                        <h4 class="card-title">{{ __('dashboard.today_profit') }}</h4>
+                        <div class="text-right">
+                            <h2 class="font-light m-b-0">{{ $profit }} <span class="font-10"> {{ __('dashboard.currency') }}</span> </h2>
+                            <span class="text-muted">{{ __('dashboard.today_profit') }}</span>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="eight wide tablet four wide computer column">
-            <div class="ui horizontal segments">
-                <div class="ui inverted red segment center aligned">
-
-                    <div class="ui inverted statistic">
-                        <div class="value" style="font-size: 23px;">
-                            {{$total}} Ks
-                        </div>
-                        <div class="label">
-                            Income
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="card">
+                    <div class="card-block">
+                        <h4 class="card-title">{{ __('dashboard.today_purchases') }}</h4>
+                        <div class="row">
+                            <div class="mr-auto ml-3 text-left">
+                                <h2 class="font-light m-b-0">{{ $purchase }}</h2>
+                                <span class="text-muted">{{ __('dashboard.invoices') }}</span>
+                            </div>
+                            <div class="ml-auto mr-3 text-right">
+                                <h2 class="font-light m-b-0">{{ $p_total }} <span class="font-10"> {{ __('dashboard.currency') }}</span></h2>
+                                <span class="text-muted">{{ __('dashboard.today_outcome') }}</span>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="ui inverted red tertiary segment center aligned">
-                  <div class="ui inverted  statistic">
-                       <div class="value" style="font-size: 23px;">
-                           Today
-                       </div>
-                   </div>
                 </div>
             </div>
-        </div>
-        <div class="eight wide tablet four wide computer column">
-            <div class="ui horizontal segments">
-                <div class="ui inverted blue segment center aligned">
-
-                    <div class="ui inverted statistic">
-                        <div class="value" style="font-size: 23px;">
-                            {{$credit}} Ks
-                        </div>
-                        <div class="label">
-                            Credit
+            <div class="col-sm-4">
+                <div class="card">
+                    <div class="card-block">
+                        <h4 class="card-title">{{ __("dashboard.today_purchase_credit") }}</h4>
+                        <div class="text-right">
+                            <h2 class="font-light m-b-0">{{ $p_credit }} <span class="font-10"> {{ __('dashboard.currency') }}</span></h2>
+                            <span class="text-muted">{{ __("dashboard.today_purchase_credit") }}</span>
                         </div>
                     </div>
-                </div>
-                <div class="ui inverted blue tertiary segment center aligned">
-                  <div class="ui inverted  statistic">
-                       <div class="value" style="font-size: 23px;">
-                           Today
-                       </div>
-                   </div>
                 </div>
             </div>
-        </div>
-        <div class="eight wide tablet four wide computer column">
-            <div class="ui horizontal segments">
-                <div class="ui inverted green segment center aligned">
-
-                    <div class="ui inverted statistic">
-                        <div class="value" style="font-size: 23px;">
-                            {{$profit}} Ks
-                        </div>
-                        <div class="label">
-                            Profit
-                        </div>
-                    </div>
-                </div>
-                <div class="ui inverted green tertiary segment center aligned">
-                    <div class="ui inverted  statistic">
-                        <div class="value" style="font-size: 23px;">
-                            Today
+            <div class="col-sm-4">
+                <div class="card">
+                    <div class="card-block">
+                        <h4 class="card-title">{{ __("dashboard.today_expense") }} </h4>
+                        <div class="text-right">
+                            <h2 class="font-light m-b-0">{{ $expense }} <span class="font-10"> {{ __('dashboard.currency') }}</span></h2>
+                            <span class="text-muted">{{ __("dashboard.today_expense") }}</span>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="eight wide tablet four wide computer column">
-            <div class="ui horizontal segments">
-                <div class="ui inverted teal segment center aligned">
-
-                    <div class="ui inverted  statistic">
-                        <div class="value" style="font-size: 23px;">
-                            {{$purchase}}
-                        </div>
-                        <div class="label">
-                            P-Invoices
-                        </div>
-                    </div>
-                </div>
-                <div class="ui inverted teal tertiary segment center aligned">
-                   <div class="ui inverted  statistic">
-                        <div class="value">
-                            Today
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="card">
+                    <div class="card-block">
+                        <h4 class="card-title">{{ __('dashboard.today_sale_credit_invoice') }}</h4>
+                        <div class="row">
+                            <div class="ml-auto mr-3 text-right">
+                                <h2 class="font-light m-b-0">{{ $today_sale_credit_invoice }}</h2>
+                                <a href="{{ url('getTodayDueCredits') }}" style="color:white;"><span class="text-muted">{{ __('dashboard.invoices') }}</span></a>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="eight wide tablet four wide computer column">
-            <div class="ui horizontal segments">
-                <div class="ui inverted red segment center aligned">
-
-                    <div class="ui inverted statistic">
-                        <div class="value" style="font-size: 23px;">
-                            {{$p_total}} Ks
-                        </div>
-                        <div class="label">
-                            Outcome
-                        </div>
-                    </div>
-                </div>
-                <div class="ui inverted red tertiary segment center aligned">
-                  <div class="ui inverted  statistic">
-                       <div class="value">
-                           Today
-                       </div>
-                   </div>
-                </div>
-            </div>
-        </div>
-        <div class="eight wide tablet four wide computer column">
-            <div class="ui horizontal segments">
-                <div class="ui inverted blue segment center aligned">
-
-                    <div class="ui inverted statistic">
-                        <div class="value" style="font-size: 23px;">
-                            {{$p_credit}} Ks
-                        </div>
-                        <div class="label">
-                            P-Credit
-                        </div>
-                    </div>
-                </div>
-                <div class="ui inverted blue tertiary segment center aligned">
-                  <div class="ui inverted  statistic">
-                       <div class="value">
-                           Today
-                       </div>
-                   </div>
-                </div>
-            </div>
-        </div>
-        <div class="eight wide tablet four wide computer column">
-            <div class="ui horizontal segments">
-                <div class="ui inverted blue segment center aligned">
-
-                    <div class="ui inverted statistic">
-                        <div class="value" style="font-size: 23px;">
-                            {{$expense}} Ks
-                        </div>
-                        <div class="label">
-                            Expense
-                        </div>
-                    </div>
-                </div>
-                <div class="ui inverted blue tertiary segment center aligned">
-                  <div class="ui inverted  statistic">
-                       <div class="value">
-                           Today
-                       </div>
-                   </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="eight wide tablet four wide computer column">
-            <div class="ui horizontal segments">
-                <div class="ui inverted teal segment center aligned">
-                    <div class="ui inverted  statistic">
-                        <div class="value" style="font-size: 23px;">
-                            {{$totalDueDateCredits}}
-                        </div>
-                        <div class="label">
-                            Credit Due Date
-                        </div>
-                    </div>
-                </div>
-                <div class="ui inverted teal tertiary segment center aligned">
-                   <div class="ui inverted  statistic">
-                        <div class="value">
-                            <a style="color:white;" href="{{ url('getTodayDueCredits') }}">Today</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
     </div>
 </div>
 @endsection
