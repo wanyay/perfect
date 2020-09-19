@@ -4,26 +4,20 @@
     <!-- Standard Meta -->
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1"/>
     <link rel="image_src" type="image/jpeg" href="/images/logo.png" />
     <link rel="icon" href="img/favicon.ico" type="image/x-icon" />
     <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
     <!-- Site Properities -->
     <title>Saytanar</title>
-
-
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
     <link href="{{url('plugins/chartist/chartist.css')}}" rel="stylesheet" />
     <link href="{{url('plugins/datepicker/css/bootstrap-datepicker3.css')}}" rel="stylesheet" />
     <link href="{{url('dist/semantic.min.css')}}" rel="stylesheet" />
     <link href="{{url('css/main.min.css')}}" rel="stylesheet" />
     <link href="{{url('plugins/pacejs/pace.css')}}" rel="stylesheet" />
-    <link rel="stylesheet" type="text/css" href="{{ url('css/plugins/toastr/toastr.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url('css/plugins/toastr/toastr.min.css') }}" />
     @yield('styles')
-    <script>
-        window.Laravel = <?php echo json_encode([
-            'csrfToken' => csrf_token(),
-        ]); ?>
-    </script>
 </head>
 <body class="admin" ng-app = "saytanar">
     <!--sidebar mobile-->

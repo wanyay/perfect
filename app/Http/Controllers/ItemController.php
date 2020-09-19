@@ -5,24 +5,19 @@ namespace App\Http\Controllers;
 use App\Exports\ItemExport;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-
 use App\Item;
-
 use App\Inventory;
-
 use Maatwebsite\Excel\Facades\Excel;
 use \Milon\Barcode\DNS1D;
-
 use App\Unit;
 
 use App\ProductType;
 
 class ItemController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-      $items = Item::all();
-      return view('item.index',compact('items'));
+        return view('item.index');
     }
 
     public function create()

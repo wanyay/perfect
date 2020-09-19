@@ -21,7 +21,9 @@ class ItemExport implements FromCollection, WithHeadings, ShouldAutoSize, WithSt
     */
     public function collection()
     {
-        return Item::select(['code', 'name', 'qty', 'price', 'cost'])->get();
+        $search = request()->search;
+         return Item::select(['code', 'name', 'qty', 'price', 'cost'])
+            ->where('name', 'like', "%{$search}%")->get();
     }
 
     public function headings(): array

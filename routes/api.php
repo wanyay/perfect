@@ -16,7 +16,8 @@
 // Route::middleware('auth:api')->get('/user', function (Request $request) {
 //     return $request->user();
 // });
-
+    Route::get('/items', 'ApiController\ItemApiController@getItems');
+    Route::delete('/items', 'ApiController\ItemApiController@deleteItems');
     Route::get('/customers',"ApiController\CustomerApiController@getCustomer");
     Route::post('/customers',"ApiController\CustomerApiController@store");
     Route::get('/sale/items','ApiController\SaleApiController@getItems');
@@ -27,4 +28,4 @@
     Route::post('/suppliers',"ApiController\SupplierApiController@store");
     Route::get('/daily/{date}',"ApiController\DailyApiController@dailychange");
     Route::post('/monthly',"ApiController\MonthlyApiController@getMonthlyData");
-    
+
