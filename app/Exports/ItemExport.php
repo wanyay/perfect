@@ -21,7 +21,7 @@ class ItemExport implements FromCollection, WithHeadings, ShouldAutoSize, WithSt
     */
     public function collection()
     {
-        return Item::select(['code', 'name', 'qty', 'price'])->get();
+        return Item::select(['code', 'name', 'qty', 'price', 'cost'])->get();
     }
 
     public function headings(): array
@@ -30,7 +30,8 @@ class ItemExport implements FromCollection, WithHeadings, ShouldAutoSize, WithSt
             "Item Code",
             "Item Name",
             "Quantity",
-            "Price"
+            "Price",
+            "Cost"
         ];
     }
 
@@ -48,7 +49,7 @@ class ItemExport implements FromCollection, WithHeadings, ShouldAutoSize, WithSt
                     'size' => 12
                 ],
             ],
-            "A1:D". $to => [
+            "A1:E". $to => [
                 'borders' => [
                     'allBorders' => [
                         'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN
@@ -74,6 +75,12 @@ class ItemExport implements FromCollection, WithHeadings, ShouldAutoSize, WithSt
                 ],
             ],
             "D1:D". $to => [
+                'alignment' => [
+                    'horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_LEFT,
+                    'vertical' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER
+                ],
+            ],
+            "E1:E". $to => [
                 'alignment' => [
                     'horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_LEFT,
                     'vertical' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER
