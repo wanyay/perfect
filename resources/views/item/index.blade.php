@@ -34,7 +34,7 @@
                 $("#getExcel").on('click', function (e) {
                     e.preventDefault();
                     let search = $("#search").val();
-                    $('<input>').attr('type','text')
+                    $('<input>').attr('type','hidden')
                         .attr('name', 'search')
                         .attr('value', search)
                         .appendTo('#export');
