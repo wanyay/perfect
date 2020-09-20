@@ -12,7 +12,7 @@ class ItemApiController extends Controller
 {
     public function getItems(Request $request)
     {
-        $items = Item::where('name', 'like', '%'. $request->search . '%')
+        $items = Item::where('name', 'like', $request->search . '%')
             ->orderBy('name')->paginate(10);
         return response()->json($items);
     }
