@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Exception;
 use Illuminate\Http\Request;
 
 use App\Customer;
@@ -59,7 +60,7 @@ class SaleController extends Controller
                 $sale->credit_due_date = $request->credit_due_date;
             }
             $sale->save();
-            
+
             if ($request->payment_type == 'credit') {
                 Credit::create([
                     'customer_id' => $request->customer_id,
@@ -68,7 +69,7 @@ class SaleController extends Controller
                     'remark'=>'Credit in '.$request->code
                 ]);
             }
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             DB::rollback();
             return Redirect::to('/sales/create')->withErrors($e->getMessage())->withInput();
         }
@@ -85,6 +86,8 @@ class SaleController extends Controller
                 $saleitem->total_price = $item->price * $item->qty;
                 $saleitem->total_profix = ($item->price - $item->cost) * $item->qty;
                 $saleitem->qty     = $item->qty;
+                $saleitem->created_at = $request->created_at;
+                $saleitem->updated_at = $request->created_at;
                 $saleitem->save();
                 $inventories = new Inventory;
                 $i = Item::findOrFail($item->id);
@@ -95,7 +98,7 @@ class SaleController extends Controller
                 $i->qty = $i->qty - $item->qty;
                 $i->update();
             }
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             // Back to form with errors
             DB::rollback();
             return Redirect::to('/sales/create')->withErrors($e->getMessage())->withInput();
@@ -114,7 +117,7 @@ class SaleController extends Controller
         DB::beginTransaction();
         try {
             SaleItem::where('sale_id', $id)->delete();
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             DB::rollback();
             return Redirect::back()->withErrors($e->getMessage())->withInput();
         }
@@ -128,7 +131,7 @@ class SaleController extends Controller
             $sale->cash = $request->cash;
             $sale->total = $request->total;
             $sale->update();
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             DB::rollback();
             return Redirect::to('/sales/create')->withErrors($e->getMessage())->withInput();
         }
@@ -171,7 +174,7 @@ class SaleController extends Controller
                     $i->update();
                 }
             }
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             // Back to form with errors
             DB::rollback();
             return Redirect::to('/sales/create')->withErrors($e->getMessage())->withInput();
@@ -196,7 +199,11 @@ class SaleController extends Controller
             $i->update();
         }
         Sale::destroy($id);
-        SaleItem::where('sale_id', $id)->delete();
+        try {
+            SaleItem::where('sale_id', $id)->delete();
+        } catch (Exception $e) {
+            return $e;
+        }
         return $sale;
     }
 }
