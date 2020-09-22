@@ -42,6 +42,13 @@
                 <el-table-column
                     align="center"
                     header-align="center"
+                    prop="price"
+                    width="100"
+                    label="Price">
+                </el-table-column>
+                <el-table-column
+                    align="center"
+                    header-align="center"
                     prop="cost"
                     width="100"
                     label="Cost">
