@@ -79,7 +79,7 @@
                             </div>
                            @endif
                         </div>
-                        <div class="two fields"> 
+                        <div class="two fields">
                           <div class="field">
                             <label>Credit Due Date</label>
                             {!! Form::date('credit_due_date', nextWeek(),null, ['required']) !!}
@@ -125,7 +125,7 @@
                      </thead>
                      <input type="hidden" name="saleitems" value="@{{saledata}}">
                      <tbody>
-											 <tr ng-repeat="newsaletemp in saledata">
+                     <tr ng-repeat="newsaletemp in saledata | reverse">
                          <td>@{{newsaletemp.code}}</td>
                          <td>@{{newsaletemp.name}}</td>
                          <td>@{{newsaletemp.price | currency}}</td>
@@ -137,7 +137,7 @@
                            <a class="btn btn-danger btn-xs" type="button" ng-click="removeSaleTemp(newsaletemp.id)">
                            <i class="icon red trash" aria-hidden="true"></i></a>
                          </td>
-                       </tr>
+                     </tr>
                      </tbody>
                  </table>
 								 <center>{!! Form::submit('Add',['class' => 'ui primary button saving','style'=>'margin-right:5px','id'=>'add']) !!}</center>

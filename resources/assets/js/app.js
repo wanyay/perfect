@@ -18,6 +18,45 @@ Vue.use(VueSweetalert2);
 
 Vue.use(ElementUI, { locale })
 
+Vue.prototype.$deletefun = function (router, id) {
+  this.$swal({
+    title: "Delete this status?",
+    text: "Are you sure? You won't be able to revert this!",
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    confirmButtonText: "Yes, Delete it!",
+    icon: "warning"
+  }).then(result => {
+    if (result.value) {
+      axios.delete(router, {
+        data : {
+          id: id
+        }
+      }).then(response => {
+        if(response.status === 200) {
+          this.$swal({
+            title: "Success",
+            text: "Deleted.",
+            confirmButtonText: "OK",
+            icon: "success"
+          }).then((response) => {
+            location.reload();
+          });
+        }
+      }).catch(err => {
+        this.$swal({
+          title: "Error",
+          text: "Whoops! look like something went wrong.",
+          confirmButtonText: "OK",
+          icon: "error"
+        }).then((response) => {
+          location.reload();
+        });
+      })
+    }
+  });
+}
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -25,6 +64,7 @@ Vue.use(ElementUI, { locale })
  */
 
 Vue.component('item-list', require('./components/ItemList.vue').default);
+Vue.component('sale-list', require('./components/SaleList.vue').default);
 
 const app = new Vue({
     el: '#app'

@@ -12,14 +12,11 @@
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-
-// Route::middleware('auth:api')->get('/user', function (Request $request) {
-//     return $request->user();
-// });
     Route::get('/items', 'ApiController\ItemApiController@getItems');
     Route::delete('/items', 'ApiController\ItemApiController@deleteItems');
     Route::get('/customers',"ApiController\CustomerApiController@getCustomer");
     Route::post('/customers',"ApiController\CustomerApiController@store");
+    Route::get('/sales','ApiController\SaleApiController@getSaleList');
     Route::get('/sale/items','ApiController\SaleApiController@getItems');
     Route::get('/purchase/items', 'ApiController\PurchaseApiController@getItems');
     Route::get('/saleitem/{id}','ApiController\SaleApiController@getSaleItem');

@@ -120,7 +120,7 @@
                  </thead>
                  <input type="hidden" name="saleitems" value="@{{saledata}}">
                  <tbody>
-                   <tr ng-repeat="newsaletemp in saledata">
+                   <tr ng-repeat="newsaletemp in saledata | reverse">
                      <td>@{{newsaletemp.code}}</td>
                      <td>@{{newsaletemp.name}}</td>
                      <td>@{{newsaletemp.price | currency}}</td>

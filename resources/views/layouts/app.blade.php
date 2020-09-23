@@ -10,13 +10,17 @@
     <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
     <!-- Site Properities -->
     <title>Saytanar</title>
-    <meta name="csrf-token" content="{{ csrf_token() }}" />
     <link href="{{url('plugins/chartist/chartist.css')}}" rel="stylesheet" />
     <link href="{{url('plugins/datepicker/css/bootstrap-datepicker3.css')}}" rel="stylesheet" />
     <link href="{{url('dist/semantic.min.css')}}" rel="stylesheet" />
     <link href="{{url('css/main.min.css')}}" rel="stylesheet" />
     <link href="{{url('plugins/pacejs/pace.css')}}" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="{{ url('css/plugins/toastr/toastr.min.css') }}" />
+    <script>
+        window.laravel =  <?php echo json_encode([
+            'csrf_token' => csrf_token(),
+        ]); ?>
+    </script>
     @yield('styles')
 </head>
 <body class="admin" ng-app = "saytanar">

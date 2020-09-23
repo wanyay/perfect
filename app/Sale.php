@@ -15,14 +15,19 @@ class Sale extends Model
     	return $this->belongsTo('App\Customer');
     }
 
+    public function getDateAttribute()
+    {
+        return $this->created_at->format('Y-m-d');
+    }
+
     public function generateInvoiceCode()
     {
         $model = self::latest()->first();
         $year = date('Y');
         $month = date('m');
-        $totalInvoiceCountByMonths = self::whereMonth('created_at', $month)->whereYear('created_at', $year)->count();        
+        $totalInvoiceCountByMonths = self::whereMonth('created_at', $month)->whereYear('created_at', $year)->count();
         if (is_null($model)) {
-            
+
             return $year . $month . "0001";
 
         } else {
@@ -38,12 +43,12 @@ class Sale extends Model
                     break;
                 default:
                     $invoiceNo = $totalInvoiceCountByMonths;
-                    
+
             }
 
             return $year . $month . $invoiceNo + 1;
 
         }
-        
+
     }
 }

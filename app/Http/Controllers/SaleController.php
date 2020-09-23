@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use Exception;
 use Illuminate\Http\Request;
 
@@ -55,7 +56,7 @@ class SaleController extends Controller
             $sale->discount = $request->discount;
             $sale->profit = $request->profit - $request->discount;
             $sale->total = $request->total - $request->discount;
-            $sale->created_at = $request->created_at;
+            $sale->created_at = Carbon::parse( $request->created_at . Carbon::now()->toTimeString());
             if ($request->payment_type == 'credit') {
                 $sale->credit_due_date = $request->credit_due_date;
             }

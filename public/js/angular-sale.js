@@ -2,7 +2,11 @@
   'use strict';
   var app = angular.module('saytanar',['barcodeScanner']);
 
-
+  app.filter('reverse', function() {
+    return function(items) {
+      return items.slice().reverse();
+    };
+  });
   app.controller('angularSaleController',['$scope','$http','$location',function($scope,$http,$location){
       $scope.saledata = [];
       $scope.items = [ ];

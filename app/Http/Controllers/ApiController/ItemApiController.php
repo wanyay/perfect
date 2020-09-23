@@ -13,13 +13,13 @@ class ItemApiController extends Controller
     public function getItems(Request $request)
     {
         $items = Item::where('name', 'like', $request->search . '%')
-            ->orderBy('name')->paginate(10);
+            ->orderBy('name')->paginate($request->get('per-page', 10));
         return response()->json($items);
     }
 
     public function deleteItems(Request $request)
     {
-        Item::findOrFail($request->item_id)->delete();
+        Item::findOrFail($request->id)->delete();
         return response()->json(['status' => 'success']);
     }
 }

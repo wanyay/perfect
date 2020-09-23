@@ -20,6 +20,7 @@
                     </el-input>
                 </el-col>
             </el-row>
+
             <div class="results"></div>
         </div>
         <div style="height: 20px">
@@ -34,47 +35,49 @@
                 <el-table-column
                     align="center"
                     header-align="center"
+                    prop="date"
+                    label="Date">
+                </el-table-column>
+                <el-table-column
+                    align="center"
+                    header-align="center"
                     prop="code"
-                    label="Code">
-                </el-table-column>
-                <el-table-column
-                    align="left"
-                    header-align="left"
-                    prop="name"
-                    label="Name">
+                    label="Invoice">
                 </el-table-column>
                 <el-table-column
                     align="center"
                     header-align="center"
-                    prop="qty"
-                    width="100"
-                    label="Quantity">
+                    prop="customer"
+                    label="Customer">
+                    <template slot-scope="scope">
+                        <template v-if="scope.row.customer == null"> N/A </template>
+                        <template v-else> {{ scope.row.customer.name }} </template>
+                    </template>
                 </el-table-column>
                 <el-table-column
                     align="center"
                     header-align="center"
-                    prop="price"
+                    prop="total"
                     width="100"
-                    label="Price">
+                    label="Total">
                 </el-table-column>
                 <el-table-column
                     align="center"
                     header-align="center"
-                    prop="cost"
+                    prop="profit"
                     width="100"
-                    label="Cost">
+                    label="Profit">
                 </el-table-column>
                 <el-table-column
                     align="center"
                     header-align="center"
                     label="Action">
                     <template slot-scope="scope">
-                        <a :href="'/items/' + scope.row.id + '/barcode'" ><i class="barcode icon"></i></a>
-                        <a :href="'/inventory/' + scope.row.id " ><i class="eye icon"></i></a>
+                        <a :href="'/sales/' + scope.row.id + '/print'" ><i class="eye icon"></i></a>
 
-                        <a :href="'/items/' + scope.row.id + '/edit'"><i class="edit icon"></i></a>
+                        <a :href="'/sales/' + scope.row.id + '/edit'"><i class="edit icon"></i></a>
 
-                        <a @click.prevent="$deletefun('/api/items',scope.row.id)"><i class="red trash icon"></i> </a>
+                        <a @click.prevent="$deletefun('/api/sales', scope.row.id)"><i class="red trash icon"></i> </a>
                     </template>
                 </el-table-column>
             </el-table>
@@ -93,39 +96,39 @@
 </template>
 
 <script>
-    export default {
-        data() {
-            return {
-                items: [],
-                search: '',
-                total: 0,
-                loading: false,
-                perPage: 10
-            }
+export default {
+    data() {
+        return {
+            items: [],
+            search: '',
+            total: 0,
+            loading: false,
+            perPage: 10
+        }
+    },
+    mounted() {
+        this.getItemList(1);
+    },
+    methods: {
+        getItemList(page) {
+            this.loading = true;
+            axios.get('/api/sales?search=' + this.search +"&per-page=" + this.perPage +"&page=" + page)
+                .then(response => {
+                    this.items = response.data.data;
+                    this.total = response.data.meta.total;
+                    this.loading = false;
+                });
         },
-        mounted() {
+        handleCurrentChange(page) {
+            this.getItemList(page)
+        },
+        searchItem() {
             this.getItemList(1);
         },
-        methods: {
-            getItemList(page) {
-                this.loading = true;
-                axios.get('/api/items?search=' + this.search + "&per-page=" + this.perPage + "&page=" + page)
-                    .then(response => {
-                        this.items = response.data.data;
-                        this.total = response.data.total;
-                        this.loading = false;
-                    });
-            },
-            handleCurrentChange(page) {
-                this.getItemList(page)
-            },
-            searchItem() {
-                this.getItemList(1);
-            },
-            handlePerPage(command) {
-                this.perPage = command;
-                this.getItemList(1);
-            }
+        handlePerPage(command) {
+            this.perPage = command
+            this.getItemList(1);
         }
     }
+}
 </script>
