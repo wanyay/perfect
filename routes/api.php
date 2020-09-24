@@ -17,6 +17,7 @@
     Route::get('/customers',"ApiController\CustomerApiController@getCustomer");
     Route::post('/customers',"ApiController\CustomerApiController@store");
     Route::get('/sales','ApiController\SaleApiController@getSaleList');
+    Route::delete('/sales' ,'ApiController\SaleApiController@delete');
     Route::get('/sale/items','ApiController\SaleApiController@getItems');
     Route::get('/purchase/items', 'ApiController\PurchaseApiController@getItems');
     Route::get('/saleitem/{id}','ApiController\SaleApiController@getSaleItem');

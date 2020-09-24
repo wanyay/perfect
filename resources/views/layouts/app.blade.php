@@ -62,7 +62,7 @@
         </div>
     </div>
     <script src="{{url('js/jquery-2.1.4.min.js')}}"></script>
-    <script src="{{url('plugins/nicescrool/jquery.nicescroll.min.js')}}"></script>
+    <script src="{{url('plugins/nicescroll/jquery.nicescroll.min.js')}}"></script>
     <script src="{{url('dist/semantic.min.js')}}"></script>
     <script data-pace-options='{ "ajax": false }' src="{{url('plugins/pacejs/pace.js')}}"></script>
     <script src="{{url('js/app.js')}}"></script>

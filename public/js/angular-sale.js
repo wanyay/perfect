@@ -10,13 +10,22 @@
   app.controller('angularSaleController',['$scope','$http','$location',function($scope,$http,$location){
       $scope.saledata = [];
       $scope.items = [ ];
-
+      $scope.searchKeyword = "";
       $scope.triggerChar = 9;
 			$scope.separatorChar = 13;
+      $scope.isLoading = false;
+      $scope.getItems = function() {
+        if ($scope.searchKeyword != "") {
+          $scope.isLoading = true
+          $http.get('/api/sale/items?search=' + $scope.searchKeyword).success(function (data) {
+            $scope.items = data;
+            $scope.isLoading = false;
+          });
+        } else {
+          $scope.items = [];
+        }
+      }
 
-      $http.get('/api/sale/items').success(function(data) {
-          $scope.items = data;
-      });
 
       $scope.total_profix = function(list){
         var profix=0;
@@ -61,7 +70,6 @@
               }
           });
           $scope.saledata[index].qty = newsaletemp.qty;
-          console.log($scope.saledata);
       }
 
       $scope.removeSaleTemp = function(id) {
@@ -111,7 +119,6 @@
     });
 
     $scope.newCustomer = function() {
-      console.log($scope.customer);
         $http({
         method : 'POST',
         url   : '/api/customers',

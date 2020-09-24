@@ -25,7 +25,7 @@ $(document).ready(function () {
     //sidebar trigger
 
     $("body").niceScroll({ cursorcolor: "#ddd", cursorwidth: 5, cursorborderradius: 0, cursorborder: 0, scrollspeed: 50, autohidemode: true, zindex: 9999999 });//body scroll tigger by nicescroll
-
+    $("scroll_content").niceScroll()
 });
 
 //Sidebar Menu Size Animaton Function
@@ -101,45 +101,45 @@ function paceLoading() {
 //Pace Loading (On Navbar) Function
 
 //Sidebar,Navbar,Mobile Sidebar,Mobile Navbar Loading Function
-// function loadhtml() {
-//     if (window.location.href.indexOf("mail.blade.php") > -1) {
-//         $(".toc").load("html/loadmailmenu.blade.php", function () {
-//             $(".ui.accordion").accordion();
-//         });
-//         $(".navbarmenu").load("html/loadnavbar.blade.php", function () {
-//             hamburger();
-//             $(".ui.dropdown").dropdown();
-//         });
-//         $("#toc").load("html/loadmobilside.blade.php", function () { });
-//         $(".mobilenavbar").load("html/loadmobilnavbar.blade.php", function () {
-//             $(".ui.dropdown").dropdown({
-//                 allowCategorySelection: true
-//             });
-//             $("#toc").sidebar("attach events", ".launch.button, .view-ui, .launch.item");
-//         });
-//     }
-//     else {
-//         $(".toc").load("html/loadsidemenu.blade.php", function () {
-//             $(".ui.accordion").accordion();
-//             $(".sidemenu").niceScroll({ cursorcolor: "#ddd", cursorwidth: 5, cursorborderradius: 0, cursorborder: 0, scrollspeed: 50, autohidemode: true, zindex: 9999999, bouncescroll: true });//sidebar scrool trigger by nicescroll
-//         });
-//         // $(".navbarmenu").load("html/loadnavbar.html", function () {
-//         //     hamburger();
-//         //     $(".ui.dropdown").dropdown();
-//         // });
-//         $("#toc").load("html/loadmobilside.blade.php", function () {
-//             $(".ui.accordion").accordion();
-//         });
-//         $(".mobilenavbar").load("html/loadmobilnavbar.blade.php", function () {
-//
-//             $(".ui.dropdown").dropdown({
-//                 allowCategorySelection: true
-//             });
-//             $("#toc").sidebar("attach events", ".launch.button, .view-ui, .launch.item");
-//         });
-//     }
-// }
-//Sidebar,Navbar,Mobile Sidebar,Mobile Navbar Loading Function
+function loadhtml() {
+    if (window.location.href.indexOf("mail.blade.php") > -1) {
+        $(".toc").load("html/loadmailmenu.blade.php", function () {
+            $(".ui.accordion").accordion();
+        });
+        $(".navbarmenu").load("html/loadnavbar.blade.php", function () {
+            hamburger();
+            $(".ui.dropdown").dropdown();
+        });
+        $("#toc").load("html/loadmobilside.blade.php", function () { });
+        $(".mobilenavbar").load("html/loadmobilnavbar.blade.php", function () {
+            $(".ui.dropdown").dropdown({
+                allowCategorySelection: true
+            });
+            $("#toc").sidebar("attach events", ".launch.button, .view-ui, .launch.item");
+        });
+    }
+    else {
+        $(".toc").load("html/loadsidemenu.blade.php", function () {
+            $(".ui.accordion").accordion();
+            $(".sidemenu").niceScroll({ cursorcolor: "#ddd", cursorwidth: 5, cursorborderradius: 0, cursorborder: 0, scrollspeed: 50, autohidemode: true, zindex: 9999999, bouncescroll: true });//sidebar scrool trigger by nicescroll
+        });
+        // $(".navbarmenu").load("html/loadnavbar.html", function () {
+        //     hamburger();
+        //     $(".ui.dropdown").dropdown();
+        // });
+        $("#toc").load("html/loadmobilside.blade.php", function () {
+            $(".ui.accordion").accordion();
+        });
+        $(".mobilenavbar").load("html/loadmobilnavbar.blade.php", function () {
+
+            $(".ui.dropdown").dropdown({
+                allowCategorySelection: true
+            });
+            $("#toc").sidebar("attach events", ".launch.button, .view-ui, .launch.item");
+        });
+    }
+}
+// Sidebar,Navbar,Mobile Sidebar,Mobile Navbar Loading Function
 
 //Sidebar And Navbar Coloring Function (This button on Footer)
 function colorize() {

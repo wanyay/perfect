@@ -61,9 +61,11 @@ class SaleApiController extends Controller
       return SaleResource::collection($sales);
   }
 
-  public function getItems()
+  public function getItems(Request $request)
   {
-    $items = Item::where('qty', '!=', 0)->get();
+    $items = Item::where('name', 'like', "%" . $request->search . "%")
+        ->orWhere('code', 'like', "%" . $request->search . "%")
+        ->where('qty', '!=', 0)->get();
     return Response::json($items, 200);
   }
 
