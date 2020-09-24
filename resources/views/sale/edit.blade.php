@@ -102,7 +102,7 @@
                         <label>Grand Total</label>
                         <input type="text" value="@{{sum(saledata)}}" disabled>
                         <input type="hidden" name="total" value="@{{sum(saledata)}}">
-                        <input type="hidden" name="profix" value="@{{total_profix(saledata)}}">
+                        <input type="hidden" name="profit" value="@{{total_profix(saledata)}}">
                       </div>
                       <div class="field">
                       </div>

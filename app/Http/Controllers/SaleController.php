@@ -128,9 +128,10 @@ class SaleController extends Controller
             $sale->code = $request->code;
             $sale->customer_id = $request->customer_id;
             $sale->payment_type = $request->payment_type;
-            $sale->profit = $request->profix;
             $sale->cash = $request->cash;
-            $sale->total = $request->total;
+            $sale->discount = $request->discount;
+            $sale->profit = $request->profit - $request->discount;
+            $sale->total = $request->total - $request->discount;
             $sale->update();
         } catch (Exception $e) {
             DB::rollback();
