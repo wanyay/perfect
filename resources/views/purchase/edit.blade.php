@@ -133,7 +133,7 @@
                             </td>
                             <td>
                                 <a class="btn btn-danger btn-xs" type="button"
-                                   ng-click="removeSaleTemp(item.id)">
+                                   ng-click="removePurchaseTemp(item.id)">
                                     <i class="icon red trash" aria-hidden="true"></i></a>
                             </td>
                         </tr>
