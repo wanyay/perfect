@@ -18,6 +18,8 @@
     Route::post('/customers',"ApiController\CustomerApiController@store");
     Route::get('/sales','ApiController\SaleApiController@getSaleList');
     Route::delete('/sales' ,'ApiController\SaleApiController@delete');
+    Route::get('/purchases','ApiController\PurchaseApiController@getPurchaseList');
+    Route::delete('/purchases' ,'ApiController\PurchaseApiController@delete');
     Route::get('/sale/items','ApiController\SaleApiController@getItems');
     Route::get('/purchase/items', 'ApiController\PurchaseApiController@getItems');
     Route::get('/saleitem/{id}','ApiController\SaleApiController@getSaleItem');

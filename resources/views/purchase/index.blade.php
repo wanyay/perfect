@@ -1,123 +1,27 @@
 @extends('layouts.app')
 
-@section('styles')
-<link rel="stylesheet" type="text/css" href="{!! asset('css/sweetalert.css') !!}">
-<link rel="stylesheet" type="text/css" href="{{ url('plugins/datatable/dataTables.semanticui.min.css')}}">
-@endsection
-
 @section('content')
-@include('errors.validation')
-<div class="ui equal width left aligned padded grid stackable">
-    <div class="row">
-        <div class="sixteen column">
-            <div class="ui segments">
-                <div class="ui segment no-padding-bottom">
-                  <h5 class="ui left floated header">Purchases List</h5>
-                  <h5 class="ui right floated header">
-                    <a href="{{url('/purchases/create')}}" class="tiny ui greenli button"><i class="plus icon"></i>New</a>
-                  </h5>
-                  <div class="clearfix"></div>
-                </div>
-                <div class="ui segment">
-                  <div class="table-responsive">
-                    <table id="data_table_info" class="ui compact selectable striped celled table" cellspacing="0" width="100%">
-                        <thead>
-                        <tr>
-                            <th>Date</th>
-                            <th>Invoice</th>
-                            <th>Supplier</th>
-                            <th>Action</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        @foreach($purchases as $purchase)
-                        <tr>
-                            <td>{{$purchase->created_at}}</td>
-                            <td>{{$purchase->code}}</td>
-                            @if($purchase->supplier)
-                            <td>{{$purchase->supplier->name}}</td>
-                            @else
-                            <td>N/A</td>
-                            @endif
-                            <td>
-                                <center>
-                                  <a href="{{ url('/purchases/'.$purchase->id).'/print'}}"><i class="eye icon"></i></a>
-
-                                  <a href="{{ url('/purchases/'.$purchase->id).'/edit'}}"><i class="edit icon"></i></a>
-
-                                  <a onclick="fun_delete({{ $purchase->id }})"><i class="red trash icon"></i></a>
-                                <center>
-                            </td>
-                        </tr>
-                        @endforeach
-                        </tbody>
-                    </table>
+    @include('errors.validation')
+    <div class="ui equal width left aligned padded grid stackable" id="app">
+        <div class="row">
+            <div class="sixteen column">
+                <div class="ui segments">
+                    <div class="ui segment no-padding-bottom">
+                        <h5 class="ui left floated header">Purchases List</h5>
+                        <h5 class="ui right floated header">
+                            <a href="{{url('/purchases/create')}}" class="tiny ui greenli button"><i
+                                    class="plus icon"></i>New</a>
+                        </h5>
+                        <div class="clearfix"></div>
                     </div>
-                  </div>
+                    <purchase-list></purchase-list>
                 </div>
-              </div>
             </div>
-          </div>
+        </div>
+    </div>
 
 
 @endsection
 @section('scripts')
-<script src="{{url('plugins/datatable/jquery.dataTables.js')}}"></script>
-<script src="js/customjs/custom-datatable.js"></script>
-<script type="text/javascript">
-
-jQuery(document).ready(function($){
-
-      $('#unit-table').DataTable({
-          "bLengthChange": false,
-      });
-    });
-
-    function fun_delete(id)
-    {
-        swal({
-          title: "Are you sure?",
-          text: "You will not be able to recover!",
-          type: "warning",
-          showCancelButton: true,
-          confirmButtonColor: "#DD6B55",
-          confirmButtonText: "Yes, delete it!",
-          closeOnConfirm: false
-        },
-
-        function() {
-            $.ajax({
-              url: '/purchases/'+ id,
-              type:"POST",
-              data: {'id':id,'_token': "{{ csrf_token() }}",'_method' : "DELETE"},
-              success: function(response){
-
-                console.log(response);
-
-                swal({
-                    title: 'Deleted!',
-                    text: 'Purchase has been successfully deleted.' ,
-                    type: "success",
-                    confirmButtonColor: "teal"
-                },
-
-                function(){ location.reload();});
-
-                },
-              error:function (response){
-                swal({
-                  title: response.status + '!',
-                  text: response.statusText ,
-                  type: "error",
-                  confirmButtonColor: "teal"
-                });
-                console.log(response);
-              }
-            });
-
-        });
-    };
-</script>
-
-
+    <script src="{{ asset('js/main.js') }}"></script>
 @endsection

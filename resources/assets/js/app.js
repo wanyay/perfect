@@ -65,7 +65,7 @@ Vue.prototype.$deletefun = function (router, id) {
 
 Vue.component('item-list', require('./components/ItemList.vue').default);
 Vue.component('sale-list', require('./components/SaleList.vue').default);
-
+Vue.component('purchase-list', require('./components/PurchaseList').default);
 const app = new Vue({
     el: '#app'
 });

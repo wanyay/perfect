@@ -10,7 +10,6 @@
         <div class="ui dropdown item">
             <img class="ui mini circular image" src="{{url('img/avatar/people/Enid.png')}}">
             <div class="menu">
-                <a class="item" href="mail.html">Inbox</a>
                 <a class="item" href="{{ url('/logout') }}" onclick="event.preventDefault();
                 document.getElementById('logout-form').submit();">Sign Out
                     <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
