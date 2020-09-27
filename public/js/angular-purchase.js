@@ -2,8 +2,13 @@
   'use strict';
   var app = angular.module('saytanar',['barcodeScanner']);
 
+  app.filter('reverse', function() {
+    return function(items) {
+      return items.slice().reverse();
+    };
+  });
 
-  app.controller('angularParchaseController',['$scope','$http','$location',function($scope,$http,$location){
+  app.controller('angularPurchaseController',['$scope','$http','$location',function($scope,$http,$location){
       $scope.purchasedata = [];
       $scope.items = [ ];
 
@@ -78,7 +83,7 @@
           console.log($scope.purchasedata);
       }
 
-      $scope.showupdatePurchaseTemp = function(newpurchasetemp){
+      $scope.showUpdatePurchaseTemp = function(newpurchasetemp){
 
         var index = $.map($scope.purchasedata,function(obj,index){
             if(obj.id == newpurchasetemp.id){
@@ -101,7 +106,7 @@
                return index;
             }
         });
-        
+
         $scope.purchasedata[index].id   = editpurchaseid;
         $scope.purchasedata[index].code = editpurchasecode;
         $scope.purchasedata[index].name = editpurchasename;

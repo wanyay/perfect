@@ -27,8 +27,12 @@
         {{--          </div>--}}
         <div class="column">
             <div class="ui segments">
-                <div class="ui segment">
-                    <h5 class="ui header">Invoice</h5>
+                <div class="ui segment no-padding-bottom">
+                    <h5 class="ui left floated header">Invoice</h5>
+                    <h5 class="ui right floated header">
+                        Sale Items : @{{ saledata.length }}
+                    </h5>
+                    <div class="clearfix"></div>
                 </div>
                 {!! Form::open(['url' => '/sales','class' => 'ui form segment form3'])!!}
                 <div class="ui two column grid">
