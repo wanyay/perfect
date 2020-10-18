@@ -3,8 +3,6 @@ $(document).ready(function () {
       $('#cash').hide();
 });
 
-
-
 $('#payment_type').on('change',function () {
     var value = $(this).find(":selected").val();
 
