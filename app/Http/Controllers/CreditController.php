@@ -6,6 +6,7 @@ use App\Credit;
 
 use App\Customer;
 
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class CreditController extends Controller
@@ -33,7 +34,8 @@ class CreditController extends Controller
         Credit::create([
             'customer_id' => $request->customer_id,
             'amount'=> $request->amount,
-            'is_payback' => 1,'remark'=>'Payback'
+            'is_payback' => 1,'remark'=>'Payback',
+            'created_at' => Carbon::parse($request->date)
         ]);
         return redirect()->route('credit.show', $request->customer_id);
     }
