@@ -46,7 +46,7 @@ class Sale extends Model
 
             }
 
-            return $year . $month . $invoiceNo + 1;
+            return ($year . $month . $invoiceNo) + 1;
 
         }
 
