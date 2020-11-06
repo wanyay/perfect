@@ -151,7 +151,7 @@
                                 {{ $purchase->supplier->name }}<br>
                                 {{ $purchase->supplier->address }}<br>
                                 Phone - {{ $purchase->supplier->phone}}
-                            </td>                                       
+                            </td>
                             <td></td>
                             <td></td>
                         </tr>
@@ -188,20 +188,14 @@
                     <td style="text-align:right">{{ $purchase->discount }} Ks</td>
                 </tr>
                 @endif
-				@if($purchase->customer)
-				<tr class="total">
-					<td></td>
-					<td></td>
-					<td style="text-align:right">Cash</td>
-					<td style="text-align:right">{{ $purchase->cash }} Ks</td>
-				</tr class="total">
-				<tr>
-					<td></td>
-					<td></td>
-					<td style="text-align:right">Credit</td>
-					<td style="text-align:right">{{ $purchase->total - $purchase->cash }} Ks</td>
-				</tr>
-				@endif
+                @if($purchase->payment_type == 'credit')
+                <tr class="total">
+                    <td></td>
+                    <td></td>
+                    <td style="text-align:right">Credit</td>
+                    <td style="text-align:right">{{ $purchase->total - $purchase->cash }} Ks</td>
+                </tr>
+                @endif
                 <tr class="total">
                     <td></td>
                     <td></td>
